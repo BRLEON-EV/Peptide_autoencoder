@@ -1,0 +1,1 @@
+python static_eval.py --config_json output/dir/config_overrides.json

@@ -1,0 +1,1058 @@
+2022-10-14 22:58:55,689 - INFO(root): Using device: cuda:0
+2022-10-14 22:58:55,689 - INFO(root): Random seed: 1238
+2022-10-14 22:58:59,981 - INFO(root): RNN_VAE(
+  (word_emb): Embedding(31, 150, padding_idx=1)
+  (encoder): GRUEncoder(
+    (rnn): GRU(150, 80, batch_first=True, bidirectional=True)
+    (q_mu): Linear(in_features=160, out_features=100, bias=True)
+    (q_logvar): Linear(in_features=160, out_features=100, bias=True)
+  )
+  (decoder): GRUDecoder(
+    (emb): Embedding(31, 150, padding_idx=1)
+    (rnn): GRU(252, 102, batch_first=True)
+    (fc): Sequential(
+      (0): Dropout(p=0.3, inplace=False)
+      (1): Linear(in_features=102, out_features=31, bias=True)
+    )
+    (word_dropout): WordDropout()
+  )
+  (classifier): CNNClassifier(
+    (conv_layers): ModuleList(
+      (0): Conv2d(1, 100, kernel_size=(3, 150), stride=(1, 1))
+      (1): Conv2d(1, 100, kernel_size=(4, 150), stride=(1, 1))
+      (2): Conv2d(1, 100, kernel_size=(5, 150), stride=(1, 1))
+    )
+    (fc): Sequential(
+      (0): Dropout(p=0.5, inplace=False)
+      (1): Linear(in_features=300, out_features=2, bias=True)
+    )
+  )
+)
+DATA_ROOT	./data_processing/
+amp:
+  |- data_kwargs:
+  |-   |- data_format	csv
+  |-   |- data_path	./data_processing/amp/
+  |-   |- iteratorspecs:
+  |-   |-   |- hld_ampneg:
+  |-   |-   |- hld_amppos:
+  |-   |-   |- hld_unl:
+  |-   |-   |- hld_vae:
+  |-   |-   |-   |- weighted_random_sample	True
+  |-   |-   |- train_amp_lab:
+  |-   |-   |-   |- weighted_random_sample	True
+  |-   |-   |- train_vae:
+  |-   |-   |-   |- weighted_random_sample	True
+  |-   |- lower	False
+  |-   |- split_seed	1288
+  |- data_prefixes:
+  |-   |- dataset_lab	amp_labeled
+  |-   |- dataset_type	bio
+  |-   |- dataset_unl	amp_unlabeled
+config_json	
+data_kwargs:
+  |- data_format	csv
+  |- data_path	./data_processing/amp/
+  |- iteratorspecs:
+  |-   |- hld_ampneg:
+  |-   |- hld_amppos:
+  |-   |- hld_unl:
+  |-   |- hld_vae:
+  |-   |-   |- weighted_random_sample	True
+  |-   |- train_amp_lab:
+  |-   |-   |- weighted_random_sample	True
+  |-   |- train_vae:
+  |-   |-   |- weighted_random_sample	True
+  |- lower	False
+  |- split_seed	1288
+data_prefixes:
+  |- dataset_lab	amp_labeled
+  |- dataset_type	bio
+  |- dataset_unl	amp_unlabeled
+datapath	data
+dataset	amp
+evals:
+  |- sample_modes:
+  |-   |- beam:
+  |-   |-   |- beam_size	5
+  |-   |-   |- n_best	3
+  |-   |-   |- sample_mode	beam
+  |- sample_size	2000
+full:
+  |- C_hard_sample_kwargs:
+  |-   |- sample_mode	categorical
+  |- G_soft_sample_kwargs:
+  |-   |- sample_mode	none_softmax
+  |- batch_size	128
+  |- beta:
+  |-   |- end:
+  |-   |-   |- iter	250000
+  |-   |-   |- val	2.0
+  |-   |- start:
+  |-   |-   |- iter	200000
+  |-   |-   |- val	2.0
+  |- cheaplog_every	50
+  |- chkpt_path	output/amp/model_{}.pt
+  |- classifier_min_length	5
+  |- clip_grad	5.0
+  |- eval_path	output/amp/full_eval.txt
+  |- expsvlog_every	2000
+  |- fasta_gen_samples_path	output/amp/full_gen.fasta
+  |- fasta_pos_samples_path	output/amp/pos_gen.fasta
+  |- gen_samples_path	output/amp/full_gen.txt
+  |- interp_samples_path	output/amp/full_interp.txt
+  |- lambda_c	1.0
+  |- lambda_e	0.1
+  |- lambda_logvar_KL	0.001
+  |- lambda_logvar_L1	0.0
+  |- lambda_u	0.1
+  |- lambda_z	0.1
+  |- lrC	0.0003
+  |- lrE	0.0003
+  |- lrG	0.0003
+  |- n_iter	50000
+  |- pos_eval_path	output/amp/full.pos_eval.txt
+  |- posz_samples_path	output/amp/full_posz.txt
+  |- s_iter	200000
+  |- samez_samples_path	output/amp/full_samez.txt
+  |- softmax_temp:
+  |-   |- end:
+  |-   |-   |- iter	250000
+  |-   |-   |- val	1.0
+  |-   |- start:
+  |-   |-   |- iter	200000
+  |-   |-   |- val	1.0
+  |- z_regu_loss	mmdrf
+ignore_gpu	False
+loadpath	
+losses:
+  |- wae_mmd:
+  |-   |- kernel	gaussian
+  |-   |- rf_dim	500
+  |-   |- rf_resample	False
+  |-   |- sigma	7.0
+max_seq_len	25
+model:
+  |- C_args:
+  |-   |- dropout	0.5
+  |-   |- max_filter_width	5
+  |-   |- min_filter_width	3
+  |-   |- num_filters	100
+  |- E_args:
+  |-   |- biGRU	True
+  |-   |- h_dim	80
+  |-   |- layers	1
+  |-   |- p_dropout	0.0
+  |- G_args:
+  |-   |- GRU_args:
+  |-   |-   |- p_out_dropout	0.3
+  |-   |-   |- p_word_dropout	0.3
+  |-   |-   |- skip_connetions	False
+  |-   |- G_class	gru
+  |-   |- deconv_args:
+  |-   |-   |- add_final_conv_layer	True
+  |-   |-   |- kernel_size	4
+  |-   |-   |- max_seq_len	25
+  |-   |-   |- num_conv_layers	2
+  |-   |-   |- num_deconv_layers	3
+  |-   |-   |- num_filters	100
+  |-   |-   |- temperature	1.0
+  |-   |-   |- useRNN	False
+  |-   |-   |- use_batch_norm	True
+  |- c_dim	2
+  |- emb_dim	150
+  |- flow	0
+  |- flow_type	
+  |- freeze_embeddings	False
+  |- z_dim	100
+part	0
+partN	1
+phase	1
+resume_result_json	True
+runname	amp
+savepath	output/amp
+savepath_toplevel	output
+seed	1238
+shared:
+  |- clip_grad	5.0
+tb_toplevel	tb
+tbpath	tb/amp
+tiny	False
+vae:
+  |- batch_size	128
+  |- beta:
+  |-   |- end:
+  |-   |-   |- iter	40000
+  |-   |-   |- val	2.0
+  |-   |- start:
+  |-   |-   |- iter	0
+  |-   |-   |- val	1.0
+  |- cheaplog_every	500
+  |- chkpt_path	output/amp/model_{}.pt
+  |- clip_grad	5.0
+  |- eval_path	output/amp/vae_eval.txt
+  |- expsvlog_every	20000
+  |- fasta_gen_samples_path	output/amp/vae_gen.fasta
+  |- gen_samples_path	output/amp/vae_gen.txt
+  |- lambda_logvar_KL	0.001
+  |- lambda_logvar_L1	0.0
+  |- lr	0.001
+  |- n_iter	200000
+  |- s_iter	0
+  |- z_regu_loss	mmdrf
+vocab_path	output/amp/vocab.dict
+{'lower': False, 'data_path': './data_processing/amp/', 'data_format': 'csv', 'csv_files': ['unlab.csv', 'amp_lab.csv', 'tox_lab.csv'], 'iteratorspecs': {'train_vae': {'subset': ['split=train'], 'weighted_random_sample': True, 'sample_prob_factors': {'amp=amp_posc': 20, 'amp=amp_posnc': 10, 'amp=amp_negc': 20, 'amp=amp_negnc': 10, 'tox=tox_posc': 20, 'tox=tox_posnc': 10, 'tox=tox_negc': 20, 'tox=tox_negnc': 10, 'sol': 20, 'anticancer': 20, 'antihyper': 20, 'hormone': 20}}, 'train_amp_lab': {'subset': ['split=train', 'amp'], 'weighted_random_sample': True, 'sample_prob_factors': {'amp=amp_posc': 20, 'amp=amp_posnc': 10, 'amp=amp_negc': 20, 'amp=amp_negnc': 10, 'tox=tox_posc': 20, 'tox=tox_posnc': 10, 'tox=tox_negc': 20, 'tox=tox_negnc': 10, 'sol': 20, 'anticancer': 20, 'antihyper': 20, 'hormone': 20}}, 'hld_vae': {'subset': ['split=val'], 'weighted_random_sample': True, 'sample_prob_factors': {'amp=amp_posc': 20, 'amp=amp_posnc': 10, 'amp=amp_negc': 20, 'amp=amp_negnc': 10, 'tox=tox_posc': 20, 'tox=tox_posnc': 10, 'tox=tox_negc': 20, 'tox=tox_negnc': 10, 'sol': 20, 'anticancer': 20, 'antihyper': 20, 'hormone': 20}}, 'hld_unl': {'subset': ['split=val', '^amp']}, 'hld_amppos': {'subset': ['split=val', 'amp=amp_posc,amp_posnc']}, 'hld_ampneg': {'subset': ['split=val', 'amp=amp_negc,amp_negnc']}}, 'fixed_vocab_path': None, 'split_seed': 1288}
+Loading Dataset...
+fields ::  OrderedDict([('text', ('text', <torchtext.data.field.Field object at 0x7ff68c20d7f0>)), ('amp', ('amp', <data_processing.dataset.AttributeField object at 0x7ff68c20d790>)), ('tox', ('tox', <data_processing.dataset.AttributeField object at 0x7ff68c20d730>))])
+Load csv file ./data_processing/amp/unlab.csv
+Load csv file ./data_processing/amp/amp_lab.csv
+Load csv file ./data_processing/amp/tox_lab.csv
+Construct torchtext Example objects
+Make and filter pandas dataframe
+df len:  332
+df columns:  Index(['text', 'lab_dummy', 'source', 'tox', 'Example', 'amp', 'lens'], dtype='object')
+TRAIN SPLIT CHECK first 10 train seqs (note: ordered alphabetically)
+1     A A A A G F E K G I D R D F E P V L S M T P L N
+3                       A A A A P P R R G P S G P D A
+4                                 A A A G D N F M R F
+6                           A A A P D I P I A N V N A
+7                                           A A A P F
+9                                 A A A S D N F M R F
+10                          A A A Y I G E S M E G H H
+11              A A C E V W K E I K F E F P A M D T L
+13              A A D D V T V V I G S A A P M S G P Q
+15                                  A A E A P S T N G
+Name: text, dtype: object
+Make subset & iterator train_vae
+Make subset & iterator train_amp_lab
+Make subset & iterator hld_vae
+Make subset & iterator hld_unl
+Make subset & iterator hld_amppos
+Make subset & iterator hld_ampneg
+Vocab size: 31
+Vocab (first 50): <unk> / <pad> / <start> / <eos> / A / G / L / P / E / K / V / I / S / D / F / N / R / T / M / Q / Y / C / H / W / t / x / a / e / m / o / p
+iterator train_vae : subset data size:     265. iterator size: 3
+iterator train_amp_lab: subset data size:      73. iterator size: 1
+iterator hld_vae   : subset data size:      33. iterator size: 1
+iterator hld_unl   : subset data size:      20. iterator size: 1
+iterator hld_amppos: subset data size:       9. iterator size: 1
+iterator hld_ampneg: subset data size:       4. iterator size: 1
+Saved vocab to output/amp/vocab.dict
+Training base vae ...
+ITER 0 TRAINING (phase 1). loss_vae: 3.5104; loss_recon: 3.4916; loss_kl: 1.9333; loss_mmd: -1.9622; Grad_norm: 5.6486e-01 
+Sample (cat T=1.0): "<start> H a t C N F E o M N V L G S H K Q V p p T K R o H"
+ITER 500 TRAINING (phase 1). loss_vae: 1.0538; loss_recon: 0.9490; loss_kl: 205.6227; loss_mmd: -1.9740; Grad_norm: 8.4637e-01 
+Sample (cat T=1.0): "<start> M P R L F M <eos>"
+ITER 1000 TRAINING (phase 1). loss_vae: 0.5390; loss_recon: 0.4334; loss_kl: 235.9915; loss_mmd: -1.9747; Grad_norm: 9.9862e-01 
+Sample (cat T=1.0): "<start> I K K <eos>"
+ITER 1500 TRAINING (phase 1). loss_vae: 0.3567; loss_recon: 0.2569; loss_kl: 235.3642; loss_mmd: -1.9761; Grad_norm: 8.4700e-01 
+Sample (cat T=1.0): "<start> P K <eos>"
+ITER 2000 TRAINING (phase 1). loss_vae: 0.2743; loss_recon: 0.1833; loss_kl: 225.6917; loss_mmd: -1.9754; Grad_norm: 8.6305e-01 
+Sample (cat T=1.0): "<start> A L N D C <eos>"
+ITER 2500 TRAINING (phase 1). loss_vae: 0.2154; loss_recon: 0.1265; loss_kl: 227.6925; loss_mmd: -1.9774; Grad_norm: 6.4214e-01 
+Sample (cat T=1.0): "<start> A P L T V <eos>"
+ITER 3000 TRAINING (phase 1). loss_vae: 0.1711; loss_recon: 0.0834; loss_kl: 232.8736; loss_mmd: -1.9757; Grad_norm: 6.2912e-01 
+Sample (cat T=1.0): "<start> A D L <eos>"
+ITER 3500 TRAINING (phase 1). loss_vae: 0.1705; loss_recon: 0.0840; loss_kl: 223.6228; loss_mmd: -1.9754; Grad_norm: 7.3788e-01 
+Sample (cat T=1.0): "<start> M K V R C S K <eos>"
+ITER 4000 TRAINING (phase 1). loss_vae: 0.1524; loss_recon: 0.0698; loss_kl: 225.7632; loss_mmd: -1.9753; Grad_norm: 5.2835e-01 
+Sample (cat T=1.0): "<start> K D <eos>"
+ITER 4500 TRAINING (phase 1). loss_vae: 0.1591; loss_recon: 0.0816; loss_kl: 222.1899; loss_mmd: -1.9789; Grad_norm: 1.0759e+00 
+Sample (cat T=1.0): "<start> A Q L N D <eos>"
+ITER 5000 TRAINING (phase 1). loss_vae: 0.1331; loss_recon: 0.0565; loss_kl: 227.1429; loss_mmd: -1.9767; Grad_norm: 9.5863e-01 
+Sample (cat T=1.0): "<start> V D G T K <eos>"
+ITER 5500 TRAINING (phase 1). loss_vae: 0.1553; loss_recon: 0.0779; loss_kl: 230.1908; loss_mmd: -1.9757; Grad_norm: 1.0169e+00 
+Sample (cat T=1.0): "<start> R L T <eos>"
+ITER 6000 TRAINING (phase 1). loss_vae: 0.1197; loss_recon: 0.0446; loss_kl: 229.8634; loss_mmd: -1.9765; Grad_norm: 5.8535e-01 
+Sample (cat T=1.0): "<start> G N T C <eos>"
+ITER 6500 TRAINING (phase 1). loss_vae: 0.1216; loss_recon: 0.0477; loss_kl: 236.0855; loss_mmd: -1.9775; Grad_norm: 5.5329e-01 
+Sample (cat T=1.0): "<start> P H F <eos>"
+ITER 7000 TRAINING (phase 1). loss_vae: 0.1059; loss_recon: 0.0353; loss_kl: 218.2336; loss_mmd: -1.9767; Grad_norm: 4.1103e-01 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 7500 TRAINING (phase 1). loss_vae: 0.1178; loss_recon: 0.0436; loss_kl: 236.2766; loss_mmd: -1.9762; Grad_norm: 4.9588e-01 
+Sample (cat T=1.0): "<start> A G D K <eos>"
+ITER 8000 TRAINING (phase 1). loss_vae: 0.1236; loss_recon: 0.0425; loss_kl: 233.2488; loss_mmd: -1.9771; Grad_norm: 5.8525e-01 
+Sample (cat T=1.0): "<start> A E K G Y L <eos>"
+ITER 8500 TRAINING (phase 1). loss_vae: 0.0982; loss_recon: 0.0319; loss_kl: 212.2315; loss_mmd: -1.9750; Grad_norm: 5.4042e-01 
+Sample (cat T=1.0): "<start> Q F T Q <eos>"
+ITER 9000 TRAINING (phase 1). loss_vae: 0.1733; loss_recon: 0.0906; loss_kl: 227.6205; loss_mmd: -1.9748; Grad_norm: 1.3590e+00 
+Sample (cat T=1.0): "<start> A G N S K V <eos>"
+ITER 9500 TRAINING (phase 1). loss_vae: 0.0983; loss_recon: 0.0324; loss_kl: 217.2947; loss_mmd: -1.9768; Grad_norm: 4.3691e-01 
+Sample (cat T=1.0): "<start> C <eos>"
+ITER 10000 TRAINING (phase 1). loss_vae: 0.1068; loss_recon: 0.0388; loss_kl: 225.4399; loss_mmd: -1.9779; Grad_norm: 4.4724e-01 
+Sample (cat T=1.0): "<start> A D L W <eos>"
+ITER 10500 TRAINING (phase 1). loss_vae: 0.1229; loss_recon: 0.0449; loss_kl: 232.6185; loss_mmd: -1.9772; Grad_norm: 6.2760e-01 
+Sample (cat T=1.0): "<start> I L M T N <eos>"
+ITER 11000 TRAINING (phase 1). loss_vae: 0.1007; loss_recon: 0.0334; loss_kl: 221.4794; loss_mmd: -1.9788; Grad_norm: 5.2018e-01 
+Sample (cat T=1.0): "<start> A L T I N <eos>"
+ITER 11500 TRAINING (phase 1). loss_vae: 0.1183; loss_recon: 0.0499; loss_kl: 230.2096; loss_mmd: -1.9786; Grad_norm: 8.2498e-01 
+Sample (cat T=1.0): "<start> S E G <eos>"
+ITER 12000 TRAINING (phase 1). loss_vae: 0.0814; loss_recon: 0.0227; loss_kl: 213.4827; loss_mmd: -1.9758; Grad_norm: 3.9664e-01 
+Sample (cat T=1.0): "<start> V L G <eos>"
+ITER 12500 TRAINING (phase 1). loss_vae: 0.0803; loss_recon: 0.0195; loss_kl: 219.4202; loss_mmd: -1.9774; Grad_norm: 3.8179e-01 
+Sample (cat T=1.0): "<start> A F L <eos>"
+ITER 13000 TRAINING (phase 1). loss_vae: 0.0856; loss_recon: 0.0187; loss_kl: 229.8093; loss_mmd: -1.9787; Grad_norm: 2.6337e-01 
+Sample (cat T=1.0): "<start> E P F F <eos>"
+ITER 13500 TRAINING (phase 1). loss_vae: 0.2106; loss_recon: 0.1259; loss_kl: 249.3808; loss_mmd: -1.9752; Grad_norm: 1.4220e+00 
+Sample (cat T=1.0): "<start> C S T L <eos>"
+ITER 14000 TRAINING (phase 1). loss_vae: 0.0876; loss_recon: 0.0259; loss_kl: 221.4712; loss_mmd: -1.9789; Grad_norm: 3.5740e-01 
+Sample (cat T=1.0): "<start> Q E Y C G <eos>"
+ITER 14500 TRAINING (phase 1). loss_vae: 0.1070; loss_recon: 0.0410; loss_kl: 226.6449; loss_mmd: -1.9749; Grad_norm: 1.0049e+00 
+Sample (cat T=1.0): "<start> M D K I C F L <eos>"
+ITER 15000 TRAINING (phase 1). loss_vae: 0.1019; loss_recon: 0.0375; loss_kl: 223.7722; loss_mmd: -1.9774; Grad_norm: 5.6617e-01 
+Sample (cat T=1.0): "<start> P D G <eos>"
+ITER 15500 TRAINING (phase 1). loss_vae: 0.1162; loss_recon: 0.0435; loss_kl: 229.7087; loss_mmd: -1.9763; Grad_norm: 5.6873e-01 
+Sample (cat T=1.0): "<start> A M L P G <eos>"
+ITER 16000 TRAINING (phase 1). loss_vae: 0.0943; loss_recon: 0.0299; loss_kl: 229.7591; loss_mmd: -1.9760; Grad_norm: 5.3156e-01 
+Sample (cat T=1.0): "<start> K R G <eos>"
+ITER 16500 TRAINING (phase 1). loss_vae: 0.0933; loss_recon: 0.0235; loss_kl: 231.8371; loss_mmd: -1.9784; Grad_norm: 3.9288e-01 
+Sample (cat T=1.0): "<start> R G P P <eos>"
+ITER 17000 TRAINING (phase 1). loss_vae: 0.1121; loss_recon: 0.0410; loss_kl: 226.0305; loss_mmd: -1.9774; Grad_norm: 4.7629e-01 
+Sample (cat T=1.0): "<start> P V <eos>"
+ITER 17500 TRAINING (phase 1). loss_vae: 0.0840; loss_recon: 0.0228; loss_kl: 207.5426; loss_mmd: -1.9774; Grad_norm: 3.3001e-01 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 18000 TRAINING (phase 1). loss_vae: 0.0899; loss_recon: 0.0266; loss_kl: 227.8984; loss_mmd: -1.9779; Grad_norm: 4.4076e-01 
+Sample (cat T=1.0): "<start> A G P <eos>"
+ITER 18500 TRAINING (phase 1). loss_vae: 0.1635; loss_recon: 0.0879; loss_kl: 233.1732; loss_mmd: -1.9777; Grad_norm: 7.0731e-01 
+Sample (cat T=1.0): "<start> A A P S D D <eos>"
+ITER 19000 TRAINING (phase 1). loss_vae: 0.1081; loss_recon: 0.0416; loss_kl: 230.3132; loss_mmd: -1.9772; Grad_norm: 4.7269e-01 
+Sample (cat T=1.0): "<start> P G <eos>"
+ITER 19500 TRAINING (phase 1). loss_vae: 0.1037; loss_recon: 0.0406; loss_kl: 224.4576; loss_mmd: -1.9769; Grad_norm: 6.5078e-01 
+Sample (cat T=1.0): "<start> A E L N W <eos>"
+ITER 20000 TRAINING (phase 1). loss_vae: 0.1075; loss_recon: 0.0285; loss_kl: 237.8505; loss_mmd: -1.9765; Grad_norm: 2.8554e-01 
+Sample (cat T=1.0): "<start> Q R <eos>"
+Saved model to output/amp/model_20000.pt
+ITER 20500 TRAINING (phase 1). loss_vae: 0.0945; loss_recon: 0.0328; loss_kl: 220.0410; loss_mmd: -1.9774; Grad_norm: 5.8291e-01 
+Sample (cat T=1.0): "<start> R V W <eos>"
+ITER 21000 TRAINING (phase 1). loss_vae: 0.0970; loss_recon: 0.0297; loss_kl: 226.7266; loss_mmd: -1.9776; Grad_norm: 4.6751e-01 
+Sample (cat T=1.0): "<start> A Y K P V L <eos>"
+ITER 21500 TRAINING (phase 1). loss_vae: 0.1578; loss_recon: 0.0728; loss_kl: 240.0419; loss_mmd: -1.9780; Grad_norm: 8.4576e-01 
+Sample (cat T=1.0): "<start> P <eos>"
+ITER 22000 TRAINING (phase 1). loss_vae: 0.0965; loss_recon: 0.0279; loss_kl: 226.6274; loss_mmd: -1.9779; Grad_norm: 2.8890e-01 
+Sample (cat T=1.0): "<start> W o A M G <eos>"
+ITER 22500 TRAINING (phase 1). loss_vae: 0.1100; loss_recon: 0.0445; loss_kl: 232.8578; loss_mmd: -1.9784; Grad_norm: 7.3499e-01 
+Sample (cat T=1.0): "<start> F L N G K G F Q <eos>"
+ITER 23000 TRAINING (phase 1). loss_vae: 0.0991; loss_recon: 0.0396; loss_kl: 222.7303; loss_mmd: -1.9790; Grad_norm: 6.7690e-01 
+Sample (cat T=1.0): "<start> V G P <eos>"
+ITER 23500 TRAINING (phase 1). loss_vae: 0.1459; loss_recon: 0.0561; loss_kl: 258.0109; loss_mmd: -1.9765; Grad_norm: 9.6908e-01 
+Sample (cat T=1.0): "<start> S S G K <eos>"
+ITER 24000 TRAINING (phase 1). loss_vae: 0.0833; loss_recon: 0.0215; loss_kl: 224.9273; loss_mmd: -1.9760; Grad_norm: 2.7025e-01 
+Sample (cat T=1.0): "<start> A F N <eos>"
+ITER 24500 TRAINING (phase 1). loss_vae: 0.3237; loss_recon: 0.2354; loss_kl: 240.2142; loss_mmd: -1.9753; Grad_norm: 2.4636e+00 
+Sample (cat T=1.0): "<start> A S I L <eos>"
+ITER 25000 TRAINING (phase 1). loss_vae: 0.1031; loss_recon: 0.0363; loss_kl: 232.9072; loss_mmd: -1.9762; Grad_norm: 4.1490e-01 
+Sample (cat T=1.0): "<start> A G K S T D G <eos>"
+ITER 25500 TRAINING (phase 1). loss_vae: 0.0939; loss_recon: 0.0313; loss_kl: 231.0660; loss_mmd: -1.9782; Grad_norm: 7.8728e-01 
+Sample (cat T=1.0): "<start> G G <eos>"
+ITER 26000 TRAINING (phase 1). loss_vae: 0.2621; loss_recon: 0.1714; loss_kl: 244.3777; loss_mmd: -1.9773; Grad_norm: 1.4358e+00 
+Sample (cat T=1.0): "<start> A G P <eos>"
+ITER 26500 TRAINING (phase 1). loss_vae: 0.1003; loss_recon: 0.0351; loss_kl: 226.4621; loss_mmd: -1.9774; Grad_norm: 6.7235e-01 
+Sample (cat T=1.0): "<start> A F K S S T P <eos>"
+ITER 27000 TRAINING (phase 1). loss_vae: 0.0817; loss_recon: 0.0201; loss_kl: 212.8763; loss_mmd: -1.9795; Grad_norm: 2.9079e-01 
+Sample (cat T=1.0): "<start> P F F G <eos>"
+ITER 27500 TRAINING (phase 1). loss_vae: 0.2038; loss_recon: 0.1165; loss_kl: 242.4178; loss_mmd: -1.9776; Grad_norm: 1.0979e+00 
+Sample (cat T=1.0): "<start> C <eos>"
+ITER 28000 TRAINING (phase 1). loss_vae: 0.0972; loss_recon: 0.0300; loss_kl: 225.2201; loss_mmd: -1.9775; Grad_norm: 3.6426e-01 
+Sample (cat T=1.0): "<start> A G <eos>"
+ITER 28500 TRAINING (phase 1). loss_vae: 0.0913; loss_recon: 0.0277; loss_kl: 218.5182; loss_mmd: -1.9795; Grad_norm: 4.0348e-01 
+Sample (cat T=1.0): "<start> C E G <eos>"
+ITER 29000 TRAINING (phase 1). loss_vae: 0.1069; loss_recon: 0.0370; loss_kl: 226.4667; loss_mmd: -1.9768; Grad_norm: 1.0398e+00 
+Sample (cat T=1.0): "<start> Q G F F F P <eos>"
+ITER 29500 TRAINING (phase 1). loss_vae: 0.0898; loss_recon: 0.0238; loss_kl: 214.4547; loss_mmd: -1.9762; Grad_norm: 3.9828e-01 
+Sample (cat T=1.0): "<start> K S <eos>"
+ITER 30000 TRAINING (phase 1). loss_vae: 0.0795; loss_recon: 0.0187; loss_kl: 218.1050; loss_mmd: -1.9778; Grad_norm: 3.3533e-01 
+Sample (cat T=1.0): "<start> N E T W A <eos>"
+ITER 30500 TRAINING (phase 1). loss_vae: 0.2133; loss_recon: 0.1277; loss_kl: 241.1464; loss_mmd: -1.9771; Grad_norm: 1.4035e+00 
+Sample (cat T=1.0): "<start> R V Y W A <eos>"
+ITER 31000 TRAINING (phase 1). loss_vae: 0.0979; loss_recon: 0.0266; loss_kl: 230.9103; loss_mmd: -1.9775; Grad_norm: 3.5426e-01 
+Sample (cat T=1.0): "<start> V G G <eos>"
+ITER 31500 TRAINING (phase 1). loss_vae: 0.0973; loss_recon: 0.0288; loss_kl: 221.4185; loss_mmd: -1.9777; Grad_norm: 5.0998e-01 
+Sample (cat T=1.0): "<start> V G <eos>"
+ITER 32000 TRAINING (phase 1). loss_vae: 0.1356; loss_recon: 0.0544; loss_kl: 234.5109; loss_mmd: -1.9767; Grad_norm: 4.5091e-01 
+Sample (cat T=1.0): "<start> A A L R <eos>"
+ITER 32500 TRAINING (phase 1). loss_vae: 0.1243; loss_recon: 0.0532; loss_kl: 233.9803; loss_mmd: -1.9776; Grad_norm: 4.8372e-01 
+Sample (cat T=1.0): "<start> K <eos>"
+ITER 33000 TRAINING (phase 1). loss_vae: 0.0891; loss_recon: 0.0266; loss_kl: 221.1806; loss_mmd: -1.9782; Grad_norm: 3.5132e-01 
+Sample (cat T=1.0): "<start> A K N I I K <eos>"
+ITER 33500 TRAINING (phase 1). loss_vae: 0.2352; loss_recon: 0.1382; loss_kl: 252.7706; loss_mmd: -1.9780; Grad_norm: 1.1088e+00 
+Sample (cat T=1.0): "<start> C G T Q H <eos>"
+ITER 34000 TRAINING (phase 1). loss_vae: 0.1001; loss_recon: 0.0256; loss_kl: 239.5562; loss_mmd: -1.9774; Grad_norm: 7.9439e-01 
+Sample (cat T=1.0): "<start> A G P <eos>"
+ITER 34500 TRAINING (phase 1). loss_vae: 0.0925; loss_recon: 0.0260; loss_kl: 224.4128; loss_mmd: -1.9782; Grad_norm: 3.8272e-01 
+Sample (cat T=1.0): "<start> M G <eos>"
+ITER 35000 TRAINING (phase 1). loss_vae: 0.1782; loss_recon: 0.0987; loss_kl: 245.4168; loss_mmd: -1.9763; Grad_norm: 9.2469e-01 
+Sample (cat T=1.0): "<start> A A N P H E <eos>"
+ITER 35500 TRAINING (phase 1). loss_vae: 0.1403; loss_recon: 0.0627; loss_kl: 237.2148; loss_mmd: -1.9770; Grad_norm: 6.8000e-01 
+Sample (cat T=1.0): "<start> M D A <eos>"
+ITER 36000 TRAINING (phase 1). loss_vae: 0.1055; loss_recon: 0.0329; loss_kl: 235.5226; loss_mmd: -1.9770; Grad_norm: 3.0430e-01 
+Sample (cat T=1.0): "<start> Q R F <eos>"
+ITER 36500 TRAINING (phase 1). loss_vae: 0.0949; loss_recon: 0.0227; loss_kl: 236.2787; loss_mmd: -1.9791; Grad_norm: 3.4507e-01 
+Sample (cat T=1.0): "<start> R D T I S G <eos>"
+ITER 37000 TRAINING (phase 1). loss_vae: 0.0953; loss_recon: 0.0312; loss_kl: 231.4926; loss_mmd: -1.9799; Grad_norm: 4.4776e-01 
+Sample (cat T=1.0): "<start> A G K H <eos>"
+ITER 37500 TRAINING (phase 1). loss_vae: 0.2297; loss_recon: 0.1240; loss_kl: 271.1219; loss_mmd: -1.9755; Grad_norm: 1.0477e+00 
+Sample (cat T=1.0): "<start> V R P <eos>"
+ITER 38000 TRAINING (phase 1). loss_vae: 0.1043; loss_recon: 0.0353; loss_kl: 226.0811; loss_mmd: -1.9784; Grad_norm: 3.5169e-01 
+Sample (cat T=1.0): "<start> E A N <eos>"
+ITER 38500 TRAINING (phase 1). loss_vae: 0.1265; loss_recon: 0.0528; loss_kl: 233.5371; loss_mmd: -1.9783; Grad_norm: 5.1660e-01 
+Sample (cat T=1.0): "<start> N W <eos>"
+ITER 39000 TRAINING (phase 1). loss_vae: 0.1022; loss_recon: 0.0292; loss_kl: 229.9850; loss_mmd: -1.9772; Grad_norm: 3.3604e-01 
+Sample (cat T=1.0): "<start> V E P K G <eos>"
+ITER 39500 TRAINING (phase 1). loss_vae: 0.2394; loss_recon: 0.1390; loss_kl: 257.0552; loss_mmd: -1.9757; Grad_norm: 1.0649e+00 
+Sample (cat T=1.0): "<start> A E L L R G <eos>"
+ITER 40000 TRAINING (phase 1). loss_vae: 0.1609; loss_recon: 0.0829; loss_kl: 233.1701; loss_mmd: -1.9777; Grad_norm: 3.4260e+00 
+Sample (cat T=1.0): "<start> P G <eos>"
+Saved model to output/amp/model_40000.pt
+ITER 40500 TRAINING (phase 1). loss_vae: 0.0943; loss_recon: 0.0242; loss_kl: 221.6437; loss_mmd: -1.9788; Grad_norm: 3.8430e-01 
+Sample (cat T=1.0): "<start> N K <eos>"
+ITER 41000 TRAINING (phase 1). loss_vae: 0.1117; loss_recon: 0.0364; loss_kl: 229.9203; loss_mmd: -1.9781; Grad_norm: 5.6645e-01 
+Sample (cat T=1.0): "<start> A L <eos>"
+ITER 41500 TRAINING (phase 1). loss_vae: 0.1037; loss_recon: 0.0323; loss_kl: 233.8492; loss_mmd: -1.9784; Grad_norm: 7.1564e-01 
+Sample (cat T=1.0): "<start> A G K D V G G <eos>"
+ITER 42000 TRAINING (phase 1). loss_vae: 0.1782; loss_recon: 0.0832; loss_kl: 259.2789; loss_mmd: -1.9768; Grad_norm: 8.3537e-01 
+Sample (cat T=1.0): "<start> A G N T G K <eos>"
+ITER 42500 TRAINING (phase 1). loss_vae: 0.1119; loss_recon: 0.0275; loss_kl: 243.7139; loss_mmd: -1.9755; Grad_norm: 3.3654e-01 
+Sample (cat T=1.0): "<start> F A <eos>"
+ITER 43000 TRAINING (phase 1). loss_vae: 0.1047; loss_recon: 0.0318; loss_kl: 238.7756; loss_mmd: -1.9756; Grad_norm: 6.2861e-01 
+Sample (cat T=1.0): "<start> A G L R S D F <eos>"
+ITER 43500 TRAINING (phase 1). loss_vae: 0.0904; loss_recon: 0.0255; loss_kl: 235.0511; loss_mmd: -1.9781; Grad_norm: 3.5691e-01 
+Sample (cat T=1.0): "<start> M N T G <eos>"
+ITER 44000 TRAINING (phase 1). loss_vae: 0.2272; loss_recon: 0.1329; loss_kl: 253.8504; loss_mmd: -1.9760; Grad_norm: 1.4572e+00 
+Sample (cat T=1.0): "<start> V G <eos>"
+ITER 44500 TRAINING (phase 1). loss_vae: 0.1089; loss_recon: 0.0296; loss_kl: 231.5619; loss_mmd: -1.9772; Grad_norm: 5.1583e-01 
+Sample (cat T=1.0): "<start> M K F <eos>"
+ITER 45000 TRAINING (phase 1). loss_vae: 0.0963; loss_recon: 0.0280; loss_kl: 235.9261; loss_mmd: -1.9772; Grad_norm: 3.5711e-01 
+Sample (cat T=1.0): "<start> W R N P <eos>"
+ITER 45500 TRAINING (phase 1). loss_vae: 0.3025; loss_recon: 0.1989; loss_kl: 250.4857; loss_mmd: -1.9749; Grad_norm: 1.4945e+00 
+Sample (cat T=1.0): "<start> E L H I <eos>"
+ITER 46000 TRAINING (phase 1). loss_vae: 0.1257; loss_recon: 0.0481; loss_kl: 238.8772; loss_mmd: -1.9771; Grad_norm: 5.4608e-01 
+Sample (cat T=1.0): "<start> A I L K V <eos>"
+ITER 46500 TRAINING (phase 1). loss_vae: 0.1138; loss_recon: 0.0365; loss_kl: 243.3928; loss_mmd: -1.9773; Grad_norm: 5.4295e-01 
+Sample (cat T=1.0): "<start> F N P G <eos>"
+ITER 47000 TRAINING (phase 1). loss_vae: 0.0930; loss_recon: 0.0266; loss_kl: 218.1946; loss_mmd: -1.9767; Grad_norm: 5.1844e-01 
+Sample (cat T=1.0): "<start> K G I L <eos>"
+ITER 47500 TRAINING (phase 1). loss_vae: 0.2048; loss_recon: 0.1297; loss_kl: 234.7709; loss_mmd: -1.9756; Grad_norm: 1.7051e+00 
+Sample (cat T=1.0): "<start> A P S T L <eos>"
+ITER 48000 TRAINING (phase 1). loss_vae: 0.1561; loss_recon: 0.0672; loss_kl: 241.3099; loss_mmd: -1.9756; Grad_norm: 6.4012e-01 
+Sample (cat T=1.0): "<start> A L R <eos>"
+ITER 48500 TRAINING (phase 1). loss_vae: 0.1192; loss_recon: 0.0423; loss_kl: 226.9989; loss_mmd: -1.9763; Grad_norm: 4.1906e-01 
+Sample (cat T=1.0): "<start> A E R G <eos>"
+ITER 49000 TRAINING (phase 1). loss_vae: 0.1104; loss_recon: 0.0326; loss_kl: 232.8918; loss_mmd: -1.9764; Grad_norm: 7.8639e-01 
+Sample (cat T=1.0): "<start> V R K G <eos>"
+ITER 49500 TRAINING (phase 1). loss_vae: 0.1237; loss_recon: 0.0488; loss_kl: 233.3067; loss_mmd: -1.9787; Grad_norm: 6.2542e-01 
+Sample (cat T=1.0): "<start> T G A A <eos>"
+ITER 50000 TRAINING (phase 1). loss_vae: 0.1731; loss_recon: 0.0773; loss_kl: 256.4342; loss_mmd: -1.9753; Grad_norm: 1.2883e+00 
+Sample (cat T=1.0): "<start> A S K L <eos>"
+ITER 50500 TRAINING (phase 1). loss_vae: 0.1137; loss_recon: 0.0368; loss_kl: 241.5788; loss_mmd: -1.9777; Grad_norm: 5.4795e-01 
+Sample (cat T=1.0): "<start> K P F V <eos>"
+ITER 51000 TRAINING (phase 1). loss_vae: 0.1968; loss_recon: 0.0990; loss_kl: 260.0330; loss_mmd: -1.9776; Grad_norm: 9.2647e-01 
+Sample (cat T=1.0): "<start> G L <eos>"
+ITER 51500 TRAINING (phase 1). loss_vae: 0.2120; loss_recon: 0.1248; loss_kl: 246.3216; loss_mmd: -1.9765; Grad_norm: 1.2611e+00 
+Sample (cat T=1.0): "<start> Q G W F <eos>"
+ITER 52000 TRAINING (phase 1). loss_vae: 0.1549; loss_recon: 0.0715; loss_kl: 239.8452; loss_mmd: -1.9774; Grad_norm: 5.9451e-01 
+Sample (cat T=1.0): "<start> L I K H T F <eos>"
+ITER 52500 TRAINING (phase 1). loss_vae: 0.2700; loss_recon: 0.1807; loss_kl: 252.2735; loss_mmd: -1.9775; Grad_norm: 1.1867e+00 
+Sample (cat T=1.0): "<start> G L N W G A <eos>"
+ITER 53000 TRAINING (phase 1). loss_vae: 0.1010; loss_recon: 0.0308; loss_kl: 233.1874; loss_mmd: -1.9790; Grad_norm: 2.6484e-01 
+Sample (cat T=1.0): "<start> A K N <eos>"
+ITER 53500 TRAINING (phase 1). loss_vae: 0.0843; loss_recon: 0.0202; loss_kl: 239.6598; loss_mmd: -1.9780; Grad_norm: 3.4805e-01 
+Sample (cat T=1.0): "<start> E A I K E P <eos>"
+ITER 54000 TRAINING (phase 1). loss_vae: 0.2018; loss_recon: 0.1138; loss_kl: 251.1186; loss_mmd: -1.9763; Grad_norm: 7.4146e-01 
+Sample (cat T=1.0): "<start> A G I K <eos>"
+ITER 54500 TRAINING (phase 1). loss_vae: 0.1851; loss_recon: 0.0876; loss_kl: 257.6003; loss_mmd: -1.9762; Grad_norm: 7.6307e-01 
+Sample (cat T=1.0): "<start> G I K <eos>"
+ITER 55000 TRAINING (phase 1). loss_vae: 0.1110; loss_recon: 0.0371; loss_kl: 228.4900; loss_mmd: -1.9771; Grad_norm: 3.2525e-01 
+Sample (cat T=1.0): "<start> A E S L K <eos>"
+ITER 55500 TRAINING (phase 1). loss_vae: 0.1314; loss_recon: 0.0518; loss_kl: 246.9970; loss_mmd: -1.9766; Grad_norm: 1.0751e+00 
+Sample (cat T=1.0): "<start> A L F <eos>"
+ITER 56000 TRAINING (phase 1). loss_vae: 0.1282; loss_recon: 0.0503; loss_kl: 234.2911; loss_mmd: -1.9780; Grad_norm: 5.0056e-01 
+Sample (cat T=1.0): "<start> P G <eos>"
+ITER 56500 TRAINING (phase 1). loss_vae: 0.9688; loss_recon: 0.8524; loss_kl: 280.9929; loss_mmd: -1.9766; Grad_norm: 1.3682e+01 
+Sample (cat T=1.0): "<start> A L K T <eos>"
+ITER 57000 TRAINING (phase 1). loss_vae: 0.2448; loss_recon: 0.1507; loss_kl: 259.8813; loss_mmd: -1.9783; Grad_norm: 9.3598e-01 
+Sample (cat T=1.0): "<start> A L <eos>"
+ITER 57500 TRAINING (phase 1). loss_vae: 0.1379; loss_recon: 0.0595; loss_kl: 236.9554; loss_mmd: -1.9771; Grad_norm: 5.5327e-01 
+Sample (cat T=1.0): "<start> D E G W F V <eos>"
+ITER 58000 TRAINING (phase 1). loss_vae: 0.1401; loss_recon: 0.0679; loss_kl: 228.8953; loss_mmd: -1.9797; Grad_norm: 6.1394e-01 
+Sample (cat T=1.0): "<start> I P G <eos>"
+ITER 58500 TRAINING (phase 1). loss_vae: 0.1200; loss_recon: 0.0419; loss_kl: 243.9697; loss_mmd: -1.9776; Grad_norm: 4.1911e-01 
+Sample (cat T=1.0): "<start> N K <eos>"
+ITER 59000 TRAINING (phase 1). loss_vae: 0.1320; loss_recon: 0.0525; loss_kl: 242.9464; loss_mmd: -1.9771; Grad_norm: 6.9901e-01 
+Sample (cat T=1.0): "<start> A A L I Y <eos>"
+ITER 59500 TRAINING (phase 1). loss_vae: 0.1638; loss_recon: 0.0749; loss_kl: 257.1235; loss_mmd: -1.9782; Grad_norm: 5.0333e-01 
+Sample (cat T=1.0): "<start> G K V <eos>"
+ITER 60000 TRAINING (phase 1). loss_vae: 0.1114; loss_recon: 0.0346; loss_kl: 239.3981; loss_mmd: -1.9779; Grad_norm: 3.8717e-01 
+Sample (cat T=1.0): "<start> P F <eos>"
+Saved model to output/amp/model_60000.pt
+ITER 60500 TRAINING (phase 1). loss_vae: 0.3210; loss_recon: 0.2027; loss_kl: 285.9843; loss_mmd: -1.9765; Grad_norm: 6.2873e+00 
+Sample (cat T=1.0): "<start> M A K K A <eos>"
+ITER 61000 TRAINING (phase 1). loss_vae: 0.1848; loss_recon: 0.0907; loss_kl: 248.4762; loss_mmd: -1.9758; Grad_norm: 7.9792e-01 
+Sample (cat T=1.0): "<start> C R Y F K L <eos>"
+ITER 61500 TRAINING (phase 1). loss_vae: 0.1435; loss_recon: 0.0559; loss_kl: 262.7086; loss_mmd: -1.9750; Grad_norm: 6.6642e-01 
+Sample (cat T=1.0): "<start> L L H <eos>"
+ITER 62000 TRAINING (phase 1). loss_vae: 0.3599; loss_recon: 0.2520; loss_kl: 255.7409; loss_mmd: -1.9777; Grad_norm: 5.6308e+00 
+Sample (cat T=1.0): "<start> V F P <eos>"
+ITER 62500 TRAINING (phase 1). loss_vae: 0.1534; loss_recon: 0.0645; loss_kl: 257.6763; loss_mmd: -1.9768; Grad_norm: 5.5743e-01 
+Sample (cat T=1.0): "<start> G <eos>"
+ITER 63000 TRAINING (phase 1). loss_vae: 0.1980; loss_recon: 0.1167; loss_kl: 254.2997; loss_mmd: -1.9746; Grad_norm: 4.8931e+00 
+Sample (cat T=1.0): "<start> A D L D R G S <eos>"
+ITER 63500 TRAINING (phase 1). loss_vae: 0.1484; loss_recon: 0.0696; loss_kl: 244.2032; loss_mmd: -1.9765; Grad_norm: 1.5112e+00 
+Sample (cat T=1.0): "<start> R L W V A <eos>"
+ITER 64000 TRAINING (phase 1). loss_vae: 0.1565; loss_recon: 0.0657; loss_kl: 251.9019; loss_mmd: -1.9776; Grad_norm: 1.0718e+00 
+Sample (cat T=1.0): "<start> S L L E <eos>"
+ITER 64500 TRAINING (phase 1). loss_vae: 0.1645; loss_recon: 0.0791; loss_kl: 243.1369; loss_mmd: -1.9757; Grad_norm: 8.5680e-01 
+Sample (cat T=1.0): "<start> A D G E F <eos>"
+ITER 65000 TRAINING (phase 1). loss_vae: 0.3609; loss_recon: 0.2676; loss_kl: 257.2523; loss_mmd: -1.9780; Grad_norm: 2.2425e+00 
+Sample (cat T=1.0): "<start> G W A <eos>"
+ITER 65500 TRAINING (phase 1). loss_vae: 0.1474; loss_recon: 0.0574; loss_kl: 255.2801; loss_mmd: -1.9769; Grad_norm: 3.9701e-01 
+Sample (cat T=1.0): "<start> R L K H <eos>"
+ITER 66000 TRAINING (phase 1). loss_vae: 0.2003; loss_recon: 0.1155; loss_kl: 246.0829; loss_mmd: -1.9774; Grad_norm: 6.5378e-01 
+Sample (cat T=1.0): "<start> R G <eos>"
+ITER 66500 TRAINING (phase 1). loss_vae: 0.2464; loss_recon: 0.1494; loss_kl: 273.6557; loss_mmd: -1.9772; Grad_norm: 2.5758e+00 
+Sample (cat T=1.0): "<start> Q L N <eos>"
+ITER 67000 TRAINING (phase 1). loss_vae: 0.3115; loss_recon: 0.2114; loss_kl: 265.2640; loss_mmd: -1.9769; Grad_norm: 2.2692e+00 
+Sample (cat T=1.0): "<start> R P L T <eos>"
+ITER 67500 TRAINING (phase 1). loss_vae: 0.1379; loss_recon: 0.0535; loss_kl: 245.0731; loss_mmd: -1.9772; Grad_norm: 4.9061e-01 
+Sample (cat T=1.0): "<start> R <eos>"
+ITER 68000 TRAINING (phase 1). loss_vae: 0.1663; loss_recon: 0.0810; loss_kl: 250.2165; loss_mmd: -1.9788; Grad_norm: 1.9806e+00 
+Sample (cat T=1.0): "<start> P W F A <eos>"
+ITER 68500 TRAINING (phase 1). loss_vae: 0.3028; loss_recon: 0.2106; loss_kl: 248.8108; loss_mmd: -1.9752; Grad_norm: 2.8168e+00 
+Sample (cat T=1.0): "<start> S I N <eos>"
+ITER 69000 TRAINING (phase 1). loss_vae: 0.2028; loss_recon: 0.1070; loss_kl: 263.0871; loss_mmd: -1.9776; Grad_norm: 8.4021e-01 
+Sample (cat T=1.0): "<start> N L <eos>"
+ITER 69500 TRAINING (phase 1). loss_vae: 0.1288; loss_recon: 0.0495; loss_kl: 239.6642; loss_mmd: -1.9754; Grad_norm: 4.5301e-01 
+Sample (cat T=1.0): "<start> V R K I I N S <eos>"
+ITER 70000 TRAINING (phase 1). loss_vae: 0.4619; loss_recon: 0.3462; loss_kl: 266.7524; loss_mmd: -1.9742; Grad_norm: 6.1409e+00 
+Sample (cat T=1.0): "<start> Y G Q L F R <eos>"
+ITER 70500 TRAINING (phase 1). loss_vae: 0.2257; loss_recon: 0.1264; loss_kl: 265.8438; loss_mmd: -1.9774; Grad_norm: 2.7596e+00 
+Sample (cat T=1.0): "<start> G L K <eos>"
+ITER 71000 TRAINING (phase 1). loss_vae: 0.1498; loss_recon: 0.0652; loss_kl: 241.3250; loss_mmd: -1.9780; Grad_norm: 6.1984e-01 
+Sample (cat T=1.0): "<start> D T <eos>"
+ITER 71500 TRAINING (phase 1). loss_vae: 0.2282; loss_recon: 0.1421; loss_kl: 241.3902; loss_mmd: -1.9757; Grad_norm: 2.0531e+00 
+Sample (cat T=1.0): "<start> A E H L G <eos>"
+ITER 72000 TRAINING (phase 1). loss_vae: 0.1253; loss_recon: 0.0470; loss_kl: 244.5185; loss_mmd: -1.9768; Grad_norm: 5.7515e-01 
+Sample (cat T=1.0): "<start> V V I Y <eos>"
+ITER 72500 TRAINING (phase 1). loss_vae: 0.1338; loss_recon: 0.0521; loss_kl: 249.2600; loss_mmd: -1.9779; Grad_norm: 1.2246e+00 
+Sample (cat T=1.0): "<start> A P K <eos>"
+ITER 73000 TRAINING (phase 1). loss_vae: 0.1502; loss_recon: 0.0696; loss_kl: 246.8047; loss_mmd: -1.9767; Grad_norm: 4.8190e-01 
+Sample (cat T=1.0): "<start> A D G <eos>"
+ITER 73500 TRAINING (phase 1). loss_vae: 0.1813; loss_recon: 0.0857; loss_kl: 253.4129; loss_mmd: -1.9771; Grad_norm: 6.9966e-01 
+Sample (cat T=1.0): "<start> P G <eos>"
+ITER 74000 TRAINING (phase 1). loss_vae: 0.1138; loss_recon: 0.0386; loss_kl: 246.2020; loss_mmd: -1.9775; Grad_norm: 3.8109e-01 
+Sample (cat T=1.0): "<start> A I K F <eos>"
+ITER 74500 TRAINING (phase 1). loss_vae: 0.4423; loss_recon: 0.3259; loss_kl: 281.1906; loss_mmd: -1.9759; Grad_norm: 3.7360e+00 
+Sample (cat T=1.0): "<start> T I <eos>"
+ITER 75000 TRAINING (phase 1). loss_vae: 0.1979; loss_recon: 0.1088; loss_kl: 251.9411; loss_mmd: -1.9768; Grad_norm: 2.8431e+00 
+Sample (cat T=1.0): "<start> G L S K <eos>"
+ITER 75500 TRAINING (phase 1). loss_vae: 0.1296; loss_recon: 0.0462; loss_kl: 251.2512; loss_mmd: -1.9752; Grad_norm: 3.0197e-01 
+Sample (cat T=1.0): "<start> A M G D <eos>"
+ITER 76000 TRAINING (phase 1). loss_vae: 0.1711; loss_recon: 0.0823; loss_kl: 254.4397; loss_mmd: -1.9787; Grad_norm: 1.4208e+00 
+Sample (cat T=1.0): "<start> M F S R V <eos>"
+ITER 76500 TRAINING (phase 1). loss_vae: 0.1728; loss_recon: 0.0898; loss_kl: 247.9793; loss_mmd: -1.9771; Grad_norm: 2.6815e+00 
+Sample (cat T=1.0): "<start> V <eos>"
+ITER 77000 TRAINING (phase 1). loss_vae: 0.1688; loss_recon: 0.0698; loss_kl: 250.5002; loss_mmd: -1.9746; Grad_norm: 6.2596e-01 
+Sample (cat T=1.0): "<start> V G <eos>"
+ITER 77500 TRAINING (phase 1). loss_vae: 0.1403; loss_recon: 0.0539; loss_kl: 264.0233; loss_mmd: -1.9765; Grad_norm: 6.6011e-01 
+Sample (cat T=1.0): "<start> T G F G <eos>"
+ITER 78000 TRAINING (phase 1). loss_vae: 0.2710; loss_recon: 0.1664; loss_kl: 268.1942; loss_mmd: -1.9768; Grad_norm: 1.4491e+00 
+Sample (cat T=1.0): "<start> A L K Y A G P A <eos>"
+ITER 78500 TRAINING (phase 1). loss_vae: 0.2106; loss_recon: 0.1164; loss_kl: 254.1693; loss_mmd: -1.9771; Grad_norm: 9.1451e-01 
+Sample (cat T=1.0): "<start> G G F <eos>"
+ITER 79000 TRAINING (phase 1). loss_vae: 0.1703; loss_recon: 0.0747; loss_kl: 255.3622; loss_mmd: -1.9767; Grad_norm: 6.8882e-01 
+Sample (cat T=1.0): "<start> A G T D N G <eos>"
+ITER 79500 TRAINING (phase 1). loss_vae: 0.1487; loss_recon: 0.0626; loss_kl: 237.5882; loss_mmd: -1.9756; Grad_norm: 2.5028e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 80000 TRAINING (phase 1). loss_vae: 0.3341; loss_recon: 0.2297; loss_kl: 271.1747; loss_mmd: -1.9786; Grad_norm: 2.0501e+00 
+Sample (cat T=1.0): "<start> A D T V <eos>"
+Saved model to output/amp/model_80000.pt
+ITER 80500 TRAINING (phase 1). loss_vae: 0.1791; loss_recon: 0.0875; loss_kl: 250.3399; loss_mmd: -1.9781; Grad_norm: 1.4436e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 81000 TRAINING (phase 1). loss_vae: 0.1591; loss_recon: 0.0763; loss_kl: 244.5930; loss_mmd: -1.9762; Grad_norm: 7.7688e-01 
+Sample (cat T=1.0): "<start> A E G I A <eos>"
+ITER 81500 TRAINING (phase 1). loss_vae: 0.1136; loss_recon: 0.0352; loss_kl: 242.3626; loss_mmd: -1.9780; Grad_norm: 3.2253e-01 
+Sample (cat T=1.0): "<start> P F L <eos>"
+ITER 82000 TRAINING (phase 1). loss_vae: 0.1205; loss_recon: 0.0412; loss_kl: 249.1852; loss_mmd: -1.9750; Grad_norm: 6.1495e-01 
+Sample (cat T=1.0): "<start> G <eos>"
+ITER 82500 TRAINING (phase 1). loss_vae: 0.6893; loss_recon: 0.5619; loss_kl: 279.7135; loss_mmd: -1.9758; Grad_norm: 6.5254e+00 
+Sample (cat T=1.0): "<start> G K N <eos>"
+ITER 83000 TRAINING (phase 1). loss_vae: 0.2132; loss_recon: 0.1120; loss_kl: 262.4443; loss_mmd: -1.9778; Grad_norm: 1.1660e+00 
+Sample (cat T=1.0): "<start> F <eos>"
+ITER 83500 TRAINING (phase 1). loss_vae: 0.1513; loss_recon: 0.0683; loss_kl: 248.5464; loss_mmd: -1.9754; Grad_norm: 5.8504e-01 
+Sample (cat T=1.0): "<start> P L T N <eos>"
+ITER 84000 TRAINING (phase 1). loss_vae: 0.1912; loss_recon: 0.1053; loss_kl: 240.0649; loss_mmd: -1.9778; Grad_norm: 7.7471e-01 
+Sample (cat T=1.0): "<start> Q K <eos>"
+ITER 84500 TRAINING (phase 1). loss_vae: 0.1544; loss_recon: 0.0709; loss_kl: 258.2629; loss_mmd: -1.9760; Grad_norm: 7.6181e-01 
+Sample (cat T=1.0): "<start> L K <eos>"
+ITER 85000 TRAINING (phase 1). loss_vae: 0.2403; loss_recon: 0.1335; loss_kl: 267.4183; loss_mmd: -1.9743; Grad_norm: 9.3056e-01 
+Sample (cat T=1.0): "<start> P V F G A <eos>"
+ITER 85500 TRAINING (phase 1). loss_vae: 0.1657; loss_recon: 0.0779; loss_kl: 253.6031; loss_mmd: -1.9757; Grad_norm: 1.4830e+00 
+Sample (cat T=1.0): "<start> A Y S L <eos>"
+ITER 86000 TRAINING (phase 1). loss_vae: 0.3457; loss_recon: 0.2360; loss_kl: 266.3359; loss_mmd: -1.9773; Grad_norm: 1.0694e+00 
+Sample (cat T=1.0): "<start> A L T N <eos>"
+ITER 86500 TRAINING (phase 1). loss_vae: 0.1553; loss_recon: 0.0702; loss_kl: 252.4736; loss_mmd: -1.9750; Grad_norm: 5.4823e-01 
+Sample (cat T=1.0): "<start> A S K V <eos>"
+ITER 87000 TRAINING (phase 1). loss_vae: 0.1501; loss_recon: 0.0627; loss_kl: 247.9723; loss_mmd: -1.9769; Grad_norm: 7.9468e-01 
+Sample (cat T=1.0): "<start> A E P H L <eos>"
+ITER 87500 TRAINING (phase 1). loss_vae: 0.2696; loss_recon: 0.1767; loss_kl: 262.9563; loss_mmd: -1.9776; Grad_norm: 2.7591e+00 
+Sample (cat T=1.0): "<start> G <eos>"
+ITER 88000 TRAINING (phase 1). loss_vae: 0.2143; loss_recon: 0.1168; loss_kl: 260.8958; loss_mmd: -1.9721; Grad_norm: 2.0030e+00 
+Sample (cat T=1.0): "<start> S E F <eos>"
+ITER 88500 TRAINING (phase 1). loss_vae: 0.2447; loss_recon: 0.1478; loss_kl: 254.2947; loss_mmd: -1.9767; Grad_norm: 1.3120e+00 
+Sample (cat T=1.0): "<start> K L N I F L <eos>"
+ITER 89000 TRAINING (phase 1). loss_vae: 0.3584; loss_recon: 0.2504; loss_kl: 265.6000; loss_mmd: -1.9761; Grad_norm: 1.9446e+00 
+Sample (cat T=1.0): "<start> A E G K Y S <eos>"
+ITER 89500 TRAINING (phase 1). loss_vae: 0.2617; loss_recon: 0.1619; loss_kl: 247.8916; loss_mmd: -1.9778; Grad_norm: 3.3923e+00 
+Sample (cat T=1.0): "<start> A S I L <eos>"
+ITER 90000 TRAINING (phase 1). loss_vae: 0.1514; loss_recon: 0.0639; loss_kl: 250.2665; loss_mmd: -1.9761; Grad_norm: 6.4616e-01 
+Sample (cat T=1.0): "<start> L R G <eos>"
+ITER 90500 TRAINING (phase 1). loss_vae: 0.5002; loss_recon: 0.3868; loss_kl: 276.2360; loss_mmd: -1.9762; Grad_norm: 2.3605e+00 
+Sample (cat T=1.0): "<start> A A K P <eos>"
+ITER 91000 TRAINING (phase 1). loss_vae: 0.1601; loss_recon: 0.0684; loss_kl: 236.0988; loss_mmd: -1.9782; Grad_norm: 1.1287e+00 
+Sample (cat T=1.0): "<start> A E G L R <eos>"
+ITER 91500 TRAINING (phase 1). loss_vae: 0.1692; loss_recon: 0.0809; loss_kl: 255.0661; loss_mmd: -1.9768; Grad_norm: 3.2835e+00 
+Sample (cat T=1.0): "<start> A E P I L <eos>"
+ITER 92000 TRAINING (phase 1). loss_vae: 0.2537; loss_recon: 0.1492; loss_kl: 270.4404; loss_mmd: -1.9782; Grad_norm: 2.4155e+00 
+Sample (cat T=1.0): "<start> L R C <eos>"
+ITER 92500 TRAINING (phase 1). loss_vae: 0.1728; loss_recon: 0.0702; loss_kl: 261.4783; loss_mmd: -1.9741; Grad_norm: 5.8362e-01 
+Sample (cat T=1.0): "<start> V <eos>"
+ITER 93000 TRAINING (phase 1). loss_vae: 0.1372; loss_recon: 0.0523; loss_kl: 249.2106; loss_mmd: -1.9769; Grad_norm: 3.9266e-01 
+Sample (cat T=1.0): "<start> S G <eos>"
+ITER 93500 TRAINING (phase 1). loss_vae: 0.3014; loss_recon: 0.1969; loss_kl: 259.5457; loss_mmd: -1.9740; Grad_norm: 6.0980e+00 
+Sample (cat T=1.0): "<start> A E F L R F <eos>"
+ITER 94000 TRAINING (phase 1). loss_vae: 0.2921; loss_recon: 0.1964; loss_kl: 255.7796; loss_mmd: -1.9752; Grad_norm: 1.3382e+00 
+Sample (cat T=1.0): "<start> N I L P <eos>"
+ITER 94500 TRAINING (phase 1). loss_vae: 0.2952; loss_recon: 0.1863; loss_kl: 270.6216; loss_mmd: -1.9759; Grad_norm: 6.0930e+00 
+Sample (cat T=1.0): "<start> L L K <eos>"
+ITER 95000 TRAINING (phase 1). loss_vae: 0.2495; loss_recon: 0.1528; loss_kl: 253.1384; loss_mmd: -1.9771; Grad_norm: 7.3126e+00 
+Sample (cat T=1.0): "<start> L G G <eos>"
+ITER 95500 TRAINING (phase 1). loss_vae: 0.2176; loss_recon: 0.1182; loss_kl: 260.5311; loss_mmd: -1.9760; Grad_norm: 2.8926e+00 
+Sample (cat T=1.0): "<start> A C S K L G <eos>"
+ITER 96000 TRAINING (phase 1). loss_vae: 0.2765; loss_recon: 0.1681; loss_kl: 269.6921; loss_mmd: -1.9758; Grad_norm: 1.0750e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 96500 TRAINING (phase 1). loss_vae: 0.1993; loss_recon: 0.1007; loss_kl: 267.5022; loss_mmd: -1.9772; Grad_norm: 7.5489e-01 
+Sample (cat T=1.0): "<start> G D T L L E <eos>"
+ITER 97000 TRAINING (phase 1). loss_vae: 0.1819; loss_recon: 0.0925; loss_kl: 254.7396; loss_mmd: -1.9761; Grad_norm: 8.5363e-01 
+Sample (cat T=1.0): "<start> A E D V <eos>"
+ITER 97500 TRAINING (phase 1). loss_vae: 0.2944; loss_recon: 0.1934; loss_kl: 251.4939; loss_mmd: -1.9771; Grad_norm: 2.1402e+00 
+Sample (cat T=1.0): "<start> G R <eos>"
+ITER 98000 TRAINING (phase 1). loss_vae: 0.3264; loss_recon: 0.2258; loss_kl: 260.6320; loss_mmd: -1.9762; Grad_norm: 3.4264e+00 
+Sample (cat T=1.0): "<start> G Q <eos>"
+ITER 98500 TRAINING (phase 1). loss_vae: 0.2997; loss_recon: 0.1857; loss_kl: 271.2995; loss_mmd: -1.9759; Grad_norm: 1.8749e+00 
+Sample (cat T=1.0): "<start> F F S A D N G <eos>"
+ITER 99000 TRAINING (phase 1). loss_vae: 0.2482; loss_recon: 0.1496; loss_kl: 264.8047; loss_mmd: -1.9791; Grad_norm: 1.1089e+00 
+Sample (cat T=1.0): "<start> N E F <eos>"
+ITER 99500 TRAINING (phase 1). loss_vae: 0.2131; loss_recon: 0.1223; loss_kl: 247.0713; loss_mmd: -1.9750; Grad_norm: 1.4676e+00 
+Sample (cat T=1.0): "<start> A G G R <eos>"
+ITER 100000 TRAINING (phase 1). loss_vae: 0.2513; loss_recon: 0.1568; loss_kl: 264.7503; loss_mmd: -1.9747; Grad_norm: 1.5791e+00 
+Sample (cat T=1.0): "<start> R E L C <eos>"
+Saved model to output/amp/model_100000.pt
+ITER 100500 TRAINING (phase 1). loss_vae: 0.2454; loss_recon: 0.1407; loss_kl: 272.2364; loss_mmd: -1.9741; Grad_norm: 1.6408e+00 
+Sample (cat T=1.0): "<start> A E S L <eos>"
+ITER 101000 TRAINING (phase 1). loss_vae: 0.2471; loss_recon: 0.1452; loss_kl: 260.9405; loss_mmd: -1.9763; Grad_norm: 1.1926e+00 
+Sample (cat T=1.0): "<start> C H <eos>"
+ITER 101500 TRAINING (phase 1). loss_vae: 0.2273; loss_recon: 0.1390; loss_kl: 252.6030; loss_mmd: -1.9778; Grad_norm: 1.4827e+00 
+Sample (cat T=1.0): "<start> N P K A V E <eos>"
+ITER 102000 TRAINING (phase 1). loss_vae: 0.1715; loss_recon: 0.0818; loss_kl: 252.1095; loss_mmd: -1.9780; Grad_norm: 1.9831e+00 
+Sample (cat T=1.0): "<start> F R W <eos>"
+ITER 102500 TRAINING (phase 1). loss_vae: 0.4721; loss_recon: 0.3549; loss_kl: 274.9580; loss_mmd: -1.9752; Grad_norm: 1.1109e+01 
+Sample (cat T=1.0): "<start> F P T G F <eos>"
+ITER 103000 TRAINING (phase 1). loss_vae: 0.4394; loss_recon: 0.3232; loss_kl: 284.2869; loss_mmd: -1.9750; Grad_norm: 3.0496e+00 
+Sample (cat T=1.0): "<start> A D N G R <eos>"
+ITER 103500 TRAINING (phase 1). loss_vae: 0.2445; loss_recon: 0.1475; loss_kl: 260.5691; loss_mmd: -1.9757; Grad_norm: 1.5071e+00 
+Sample (cat T=1.0): "<start> R L H L <eos>"
+ITER 104000 TRAINING (phase 1). loss_vae: 0.1884; loss_recon: 0.0968; loss_kl: 253.5564; loss_mmd: -1.9752; Grad_norm: 2.5993e+00 
+Sample (cat T=1.0): "<start> A V P F <eos>"
+ITER 104500 TRAINING (phase 1). loss_vae: 0.6120; loss_recon: 0.4897; loss_kl: 281.6569; loss_mmd: -1.9746; Grad_norm: 9.0278e+00 
+Sample (cat T=1.0): "<start> D D N <eos>"
+ITER 105000 TRAINING (phase 1). loss_vae: 0.3345; loss_recon: 0.2224; loss_kl: 272.6875; loss_mmd: -1.9760; Grad_norm: 1.9892e+00 
+Sample (cat T=1.0): "<start> E L I F <eos>"
+ITER 105500 TRAINING (phase 1). loss_vae: 0.2570; loss_recon: 0.1502; loss_kl: 270.1305; loss_mmd: -1.9754; Grad_norm: 8.7928e-01 
+Sample (cat T=1.0): "<start> S K T G K <eos>"
+ITER 106000 TRAINING (phase 1). loss_vae: 0.2304; loss_recon: 0.1224; loss_kl: 275.2447; loss_mmd: -1.9746; Grad_norm: 1.3050e+00 
+Sample (cat T=1.0): "<start> A I S K <eos>"
+ITER 106500 TRAINING (phase 1). loss_vae: 0.2831; loss_recon: 0.1763; loss_kl: 278.4716; loss_mmd: -1.9766; Grad_norm: 3.3830e+00 
+Sample (cat T=1.0): "<start> V E S K <eos>"
+ITER 107000 TRAINING (phase 1). loss_vae: 0.2686; loss_recon: 0.1585; loss_kl: 273.0189; loss_mmd: -1.9755; Grad_norm: 1.4404e+00 
+Sample (cat T=1.0): "<start> G D I F S W <eos>"
+ITER 107500 TRAINING (phase 1). loss_vae: 0.1703; loss_recon: 0.0802; loss_kl: 259.7632; loss_mmd: -1.9727; Grad_norm: 6.8654e+00 
+Sample (cat T=1.0): "<start> G G <eos>"
+ITER 108000 TRAINING (phase 1). loss_vae: 0.2241; loss_recon: 0.1239; loss_kl: 265.1501; loss_mmd: -1.9769; Grad_norm: 2.8729e+00 
+Sample (cat T=1.0): "<start> P G Y <eos>"
+ITER 108500 TRAINING (phase 1). loss_vae: 0.3168; loss_recon: 0.2039; loss_kl: 281.3900; loss_mmd: -1.9747; Grad_norm: 2.1896e+00 
+Sample (cat T=1.0): "<start> A G E L F Q G <eos>"
+ITER 109000 TRAINING (phase 1). loss_vae: 0.3655; loss_recon: 0.2595; loss_kl: 268.7013; loss_mmd: -1.9773; Grad_norm: 1.3062e+00 
+Sample (cat T=1.0): "<start> A I L <eos>"
+ITER 109500 TRAINING (phase 1). loss_vae: 0.3598; loss_recon: 0.2493; loss_kl: 270.1890; loss_mmd: -1.9768; Grad_norm: 6.0667e+00 
+Sample (cat T=1.0): "<start> E N F F A <eos>"
+ITER 110000 TRAINING (phase 1). loss_vae: 0.4786; loss_recon: 0.3509; loss_kl: 282.0799; loss_mmd: -1.9757; Grad_norm: 3.0442e+00 
+Sample (cat T=1.0): "<start> G L R F <eos>"
+ITER 110500 TRAINING (phase 1). loss_vae: 0.2171; loss_recon: 0.1117; loss_kl: 274.6974; loss_mmd: -1.9777; Grad_norm: 1.1302e+00 
+Sample (cat T=1.0): "<start> V G G <eos>"
+ITER 111000 TRAINING (phase 1). loss_vae: 0.1917; loss_recon: 0.0902; loss_kl: 270.3636; loss_mmd: -1.9772; Grad_norm: 5.7894e-01 
+Sample (cat T=1.0): "<start> G W V R <eos>"
+ITER 111500 TRAINING (phase 1). loss_vae: 0.2884; loss_recon: 0.1971; loss_kl: 256.9829; loss_mmd: -1.9757; Grad_norm: 8.9232e-01 
+Sample (cat T=1.0): "<start> A I L K T <eos>"
+ITER 112000 TRAINING (phase 1). loss_vae: 0.2450; loss_recon: 0.1413; loss_kl: 263.8437; loss_mmd: -1.9763; Grad_norm: 2.0189e+00 
+Sample (cat T=1.0): "<start> M L F F <eos>"
+ITER 112500 TRAINING (phase 1). loss_vae: 0.2835; loss_recon: 0.1720; loss_kl: 277.2708; loss_mmd: -1.9771; Grad_norm: 1.3468e+00 
+Sample (cat T=1.0): "<start> L <eos>"
+ITER 113000 TRAINING (phase 1). loss_vae: 0.3327; loss_recon: 0.2202; loss_kl: 267.7324; loss_mmd: -1.9741; Grad_norm: 2.0193e+00 
+Sample (cat T=1.0): "<start> A G I H C <eos>"
+ITER 113500 TRAINING (phase 1). loss_vae: 0.2429; loss_recon: 0.1482; loss_kl: 264.1703; loss_mmd: -1.9743; Grad_norm: 1.2248e+00 
+Sample (cat T=1.0): "<start> V L R <eos>"
+ITER 114000 TRAINING (phase 1). loss_vae: 0.2358; loss_recon: 0.1403; loss_kl: 256.5060; loss_mmd: -1.9772; Grad_norm: 1.5449e+00 
+Sample (cat T=1.0): "<start> V W <eos>"
+ITER 114500 TRAINING (phase 1). loss_vae: 0.3567; loss_recon: 0.2510; loss_kl: 274.9118; loss_mmd: -1.9748; Grad_norm: 1.6441e+00 
+Sample (cat T=1.0): "<start> V V L R <eos>"
+ITER 115000 TRAINING (phase 1). loss_vae: 0.3252; loss_recon: 0.2090; loss_kl: 280.6326; loss_mmd: -1.9793; Grad_norm: 2.0990e+00 
+Sample (cat T=1.0): "<start> F G F L <eos>"
+ITER 115500 TRAINING (phase 1). loss_vae: 0.2698; loss_recon: 0.1571; loss_kl: 273.7405; loss_mmd: -1.9768; Grad_norm: 7.4226e-01 
+Sample (cat T=1.0): "<start> E F L R L <eos>"
+ITER 116000 TRAINING (phase 1). loss_vae: 0.2139; loss_recon: 0.1130; loss_kl: 267.4804; loss_mmd: -1.9779; Grad_norm: 1.3146e+00 
+Sample (cat T=1.0): "<start> P H L <eos>"
+ITER 116500 TRAINING (phase 1). loss_vae: 0.5993; loss_recon: 0.4798; loss_kl: 282.8117; loss_mmd: -1.9768; Grad_norm: 6.6491e+00 
+Sample (cat T=1.0): "<start> F Q D D C E C T D S W <eos>"
+ITER 117000 TRAINING (phase 1). loss_vae: 0.4302; loss_recon: 0.3049; loss_kl: 299.1625; loss_mmd: -1.9776; Grad_norm: 1.8021e+00 
+Sample (cat T=1.0): "<start> T L I L <eos>"
+ITER 117500 TRAINING (phase 1). loss_vae: 0.4027; loss_recon: 0.2801; loss_kl: 283.7591; loss_mmd: -1.9759; Grad_norm: 2.2261e+00 
+Sample (cat T=1.0): "<start> A N E G <eos>"
+ITER 118000 TRAINING (phase 1). loss_vae: 0.2686; loss_recon: 0.1604; loss_kl: 265.5457; loss_mmd: -1.9764; Grad_norm: 1.0012e+00 
+Sample (cat T=1.0): "<start> G F G L <eos>"
+ITER 118500 TRAINING (phase 1). loss_vae: 0.2432; loss_recon: 0.1405; loss_kl: 269.7927; loss_mmd: -1.9777; Grad_norm: 1.8396e+00 
+Sample (cat T=1.0): "<start> A G D <eos>"
+ITER 119000 TRAINING (phase 1). loss_vae: 0.2236; loss_recon: 0.1254; loss_kl: 268.0892; loss_mmd: -1.9779; Grad_norm: 8.8630e-01 
+Sample (cat T=1.0): "<start> G <eos>"
+ITER 119500 TRAINING (phase 1). loss_vae: 0.2013; loss_recon: 0.1041; loss_kl: 270.4319; loss_mmd: -1.9762; Grad_norm: 4.2661e+00 
+Sample (cat T=1.0): "<start> A P K D M <eos>"
+ITER 120000 TRAINING (phase 1). loss_vae: 0.3370; loss_recon: 0.2219; loss_kl: 262.6258; loss_mmd: -1.9735; Grad_norm: 1.8921e+00 
+Sample (cat T=1.0): "<start> A V T <eos>"
+Saved model to output/amp/model_120000.pt
+ITER 120500 TRAINING (phase 1). loss_vae: 0.1916; loss_recon: 0.0883; loss_kl: 263.9797; loss_mmd: -1.9758; Grad_norm: 9.8011e-01 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 121000 TRAINING (phase 1). loss_vae: 0.2289; loss_recon: 0.1257; loss_kl: 267.9230; loss_mmd: -1.9758; Grad_norm: 1.0527e+00 
+Sample (cat T=1.0): "<start> A D L T G <eos>"
+ITER 121500 TRAINING (phase 1). loss_vae: 0.2410; loss_recon: 0.1338; loss_kl: 272.9263; loss_mmd: -1.9776; Grad_norm: 1.3810e+00 
+Sample (cat T=1.0): "<start> A L E <eos>"
+ITER 122000 TRAINING (phase 1). loss_vae: 0.5168; loss_recon: 0.3984; loss_kl: 278.6736; loss_mmd: -1.9750; Grad_norm: 3.5091e+00 
+Sample (cat T=1.0): "<start> F L L K <eos>"
+ITER 122500 TRAINING (phase 1). loss_vae: 0.2625; loss_recon: 0.1498; loss_kl: 284.0648; loss_mmd: -1.9770; Grad_norm: 1.1812e+00 
+Sample (cat T=1.0): "<start> P F G N <eos>"
+ITER 123000 TRAINING (phase 1). loss_vae: 0.2727; loss_recon: 0.1602; loss_kl: 281.1606; loss_mmd: -1.9775; Grad_norm: 6.5306e+00 
+Sample (cat T=1.0): "<start> R V <eos>"
+ITER 123500 TRAINING (phase 1). loss_vae: 0.1974; loss_recon: 0.0924; loss_kl: 274.1216; loss_mmd: -1.9759; Grad_norm: 1.1792e+00 
+Sample (cat T=1.0): "<start> V I L S <eos>"
+ITER 124000 TRAINING (phase 1). loss_vae: 0.3295; loss_recon: 0.2252; loss_kl: 274.1064; loss_mmd: -1.9749; Grad_norm: 1.6721e+01 
+Sample (cat T=1.0): "<start> F <eos>"
+ITER 124500 TRAINING (phase 1). loss_vae: 0.4617; loss_recon: 0.3341; loss_kl: 287.2173; loss_mmd: -1.9757; Grad_norm: 1.8023e+00 
+Sample (cat T=1.0): "<start> W K S G F <eos>"
+ITER 125000 TRAINING (phase 1). loss_vae: 0.3256; loss_recon: 0.2128; loss_kl: 273.7561; loss_mmd: -1.9766; Grad_norm: 2.5319e+00 
+Sample (cat T=1.0): "<start> W V L P <eos>"
+ITER 125500 TRAINING (phase 1). loss_vae: 0.1898; loss_recon: 0.0932; loss_kl: 269.4634; loss_mmd: -1.9758; Grad_norm: 9.6663e-01 
+Sample (cat T=1.0): "<start> A D G G <eos>"
+ITER 126000 TRAINING (phase 1). loss_vae: 0.4759; loss_recon: 0.3556; loss_kl: 281.1367; loss_mmd: -1.9773; Grad_norm: 5.1553e+00 
+Sample (cat T=1.0): "<start> A I K K <eos>"
+ITER 126500 TRAINING (phase 1). loss_vae: 0.2645; loss_recon: 0.1576; loss_kl: 273.6380; loss_mmd: -1.9752; Grad_norm: 8.7182e+00 
+Sample (cat T=1.0): "<start> I A E G N <eos>"
+ITER 127000 TRAINING (phase 1). loss_vae: 0.3822; loss_recon: 0.2655; loss_kl: 277.7812; loss_mmd: -1.9769; Grad_norm: 2.9904e+00 
+Sample (cat T=1.0): "<start> D G <eos>"
+ITER 127500 TRAINING (phase 1). loss_vae: 0.3276; loss_recon: 0.2197; loss_kl: 266.6874; loss_mmd: -1.9756; Grad_norm: 2.6036e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 128000 TRAINING (phase 1). loss_vae: 0.3725; loss_recon: 0.2548; loss_kl: 274.8448; loss_mmd: -1.9729; Grad_norm: 2.2001e+00 
+Sample (cat T=1.0): "<start> A K W F V <eos>"
+ITER 128500 TRAINING (phase 1). loss_vae: 0.2985; loss_recon: 0.1911; loss_kl: 268.4084; loss_mmd: -1.9776; Grad_norm: 2.5253e+00 
+Sample (cat T=1.0): "<start> H E G K <eos>"
+ITER 129000 TRAINING (phase 1). loss_vae: 0.3051; loss_recon: 0.2012; loss_kl: 268.1117; loss_mmd: -1.9760; Grad_norm: 1.2682e+00 
+Sample (cat T=1.0): "<start> K L N <eos>"
+ITER 129500 TRAINING (phase 1). loss_vae: 0.2858; loss_recon: 0.1840; loss_kl: 258.5643; loss_mmd: -1.9762; Grad_norm: 1.2026e+01 
+Sample (cat T=1.0): "<start> G <eos>"
+ITER 130000 TRAINING (phase 1). loss_vae: 0.2703; loss_recon: 0.1685; loss_kl: 267.0656; loss_mmd: -1.9740; Grad_norm: 3.9940e+00 
+Sample (cat T=1.0): "<start> L N G I K <eos>"
+ITER 130500 TRAINING (phase 1). loss_vae: 0.2300; loss_recon: 0.1183; loss_kl: 279.5131; loss_mmd: -1.9771; Grad_norm: 6.4884e-01 
+Sample (cat T=1.0): "<start> A G G <eos>"
+ITER 131000 TRAINING (phase 1). loss_vae: 0.2966; loss_recon: 0.1870; loss_kl: 273.3892; loss_mmd: -1.9742; Grad_norm: 3.1194e+00 
+Sample (cat T=1.0): "<start> K G N F <eos>"
+ITER 131500 TRAINING (phase 1). loss_vae: 0.3919; loss_recon: 0.2806; loss_kl: 271.2412; loss_mmd: -1.9738; Grad_norm: 3.5697e+00 
+Sample (cat T=1.0): "<start> A I W A A <eos>"
+ITER 132000 TRAINING (phase 1). loss_vae: 0.3249; loss_recon: 0.2206; loss_kl: 263.3024; loss_mmd: -1.9773; Grad_norm: 2.1416e+00 
+Sample (cat T=1.0): "<start> M D L T <eos>"
+ITER 132500 TRAINING (phase 1). loss_vae: 0.2169; loss_recon: 0.1167; loss_kl: 258.8784; loss_mmd: -1.9753; Grad_norm: 9.9803e-01 
+Sample (cat T=1.0): "<start> P H W I <eos>"
+ITER 133000 TRAINING (phase 1). loss_vae: 0.3510; loss_recon: 0.2355; loss_kl: 273.7851; loss_mmd: -1.9755; Grad_norm: 5.6541e+00 
+Sample (cat T=1.0): "<start> F P F R <eos>"
+ITER 133500 TRAINING (phase 1). loss_vae: 0.5097; loss_recon: 0.3808; loss_kl: 276.8852; loss_mmd: -1.9747; Grad_norm: 4.7986e+00 
+Sample (cat T=1.0): "<start> N E S L <eos>"
+ITER 134000 TRAINING (phase 1). loss_vae: 0.4108; loss_recon: 0.2867; loss_kl: 281.5440; loss_mmd: -1.9769; Grad_norm: 3.6116e+00 
+Sample (cat T=1.0): "<start> P G G <eos>"
+ITER 134500 TRAINING (phase 1). loss_vae: 0.4486; loss_recon: 0.3238; loss_kl: 287.4805; loss_mmd: -1.9747; Grad_norm: 4.5193e+00 
+Sample (cat T=1.0): "<start> E L W V A <eos>"
+ITER 135000 TRAINING (phase 1). loss_vae: 0.3294; loss_recon: 0.2165; loss_kl: 271.5952; loss_mmd: -1.9743; Grad_norm: 1.8397e+00 
+Sample (cat T=1.0): "<start> G R I P K <eos>"
+ITER 135500 TRAINING (phase 1). loss_vae: 0.2936; loss_recon: 0.1787; loss_kl: 275.5698; loss_mmd: -1.9727; Grad_norm: 1.6615e+00 
+Sample (cat T=1.0): "<start> F L D G <eos>"
+ITER 136000 TRAINING (phase 1). loss_vae: 0.3663; loss_recon: 0.2566; loss_kl: 267.7932; loss_mmd: -1.9758; Grad_norm: 2.7486e+00 
+Sample (cat T=1.0): "<start> P A L <eos>"
+ITER 136500 TRAINING (phase 1). loss_vae: 0.3897; loss_recon: 0.2801; loss_kl: 275.3123; loss_mmd: -1.9761; Grad_norm: 5.4601e+00 
+Sample (cat T=1.0): "<start> A I P K <eos>"
+ITER 137000 TRAINING (phase 1). loss_vae: 0.5099; loss_recon: 0.3920; loss_kl: 284.6321; loss_mmd: -1.9750; Grad_norm: 2.1879e+00 
+Sample (cat T=1.0): "<start> A V L T G Y Y T G <eos>"
+ITER 137500 TRAINING (phase 1). loss_vae: 0.2554; loss_recon: 0.1455; loss_kl: 277.0972; loss_mmd: -1.9752; Grad_norm: 2.1326e+00 
+Sample (cat T=1.0): "<start> K G P R <eos>"
+ITER 138000 TRAINING (phase 1). loss_vae: 0.3776; loss_recon: 0.2537; loss_kl: 288.8114; loss_mmd: -1.9769; Grad_norm: 2.8118e+00 
+Sample (cat T=1.0): "<start> A L G L T C <eos>"
+ITER 138500 TRAINING (phase 1). loss_vae: 0.3367; loss_recon: 0.2259; loss_kl: 277.4147; loss_mmd: -1.9740; Grad_norm: 2.7658e+00 
+Sample (cat T=1.0): "<start> A G G F <eos>"
+ITER 139000 TRAINING (phase 1). loss_vae: 0.3339; loss_recon: 0.2184; loss_kl: 287.2222; loss_mmd: -1.9754; Grad_norm: 1.2701e+00 
+Sample (cat T=1.0): "<start> A G G <eos>"
+ITER 139500 TRAINING (phase 1). loss_vae: 0.3233; loss_recon: 0.2040; loss_kl: 278.6222; loss_mmd: -1.9771; Grad_norm: 2.5635e+00 
+Sample (cat T=1.0): "<start> A G R D T <eos>"
+ITER 140000 TRAINING (phase 1). loss_vae: 0.4678; loss_recon: 0.3562; loss_kl: 280.7600; loss_mmd: -1.9751; Grad_norm: 1.5495e+00 
+Sample (cat T=1.0): "<start> G I K <eos>"
+Saved model to output/amp/model_140000.pt
+ITER 140500 TRAINING (phase 1). loss_vae: 0.4152; loss_recon: 0.3001; loss_kl: 277.4995; loss_mmd: -1.9746; Grad_norm: 3.1628e+00 
+Sample (cat T=1.0): "<start> P G T F <eos>"
+ITER 141000 TRAINING (phase 1). loss_vae: 0.3644; loss_recon: 0.2408; loss_kl: 287.8677; loss_mmd: -1.9766; Grad_norm: 2.8347e+00 
+Sample (cat T=1.0): "<start> M Q <eos>"
+ITER 141500 TRAINING (phase 1). loss_vae: 0.2982; loss_recon: 0.1820; loss_kl: 273.3484; loss_mmd: -1.9755; Grad_norm: 6.5459e+00 
+Sample (cat T=1.0): "<start> A E T C <eos>"
+ITER 142000 TRAINING (phase 1). loss_vae: 0.2944; loss_recon: 0.1857; loss_kl: 278.9395; loss_mmd: -1.9757; Grad_norm: 2.2349e+00 
+Sample (cat T=1.0): "<start> A G K D V G N <eos>"
+ITER 142500 TRAINING (phase 1). loss_vae: 0.3667; loss_recon: 0.2525; loss_kl: 275.4967; loss_mmd: -1.9767; Grad_norm: 2.7121e+00 
+Sample (cat T=1.0): "<start> A G E A C <eos>"
+ITER 143000 TRAINING (phase 1). loss_vae: 0.4090; loss_recon: 0.2847; loss_kl: 289.9797; loss_mmd: -1.9753; Grad_norm: 2.2486e+00 
+Sample (cat T=1.0): "<start> A L P A G K <eos>"
+ITER 143500 TRAINING (phase 1). loss_vae: 0.4291; loss_recon: 0.3138; loss_kl: 256.9297; loss_mmd: -1.9760; Grad_norm: 3.3654e+00 
+Sample (cat T=1.0): "<start> Y H D P <eos>"
+ITER 144000 TRAINING (phase 1). loss_vae: 0.3456; loss_recon: 0.2223; loss_kl: 283.2120; loss_mmd: -1.9739; Grad_norm: 2.4709e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 144500 TRAINING (phase 1). loss_vae: 0.3471; loss_recon: 0.2324; loss_kl: 267.4161; loss_mmd: -1.9761; Grad_norm: 2.1041e+00 
+Sample (cat T=1.0): "<start> M G <eos>"
+ITER 145000 TRAINING (phase 1). loss_vae: 0.4284; loss_recon: 0.3112; loss_kl: 278.5320; loss_mmd: -1.9763; Grad_norm: 8.4044e+00 
+Sample (cat T=1.0): "<start> N L K <eos>"
+ITER 145500 TRAINING (phase 1). loss_vae: 0.3966; loss_recon: 0.2683; loss_kl: 290.6770; loss_mmd: -1.9747; Grad_norm: 2.2830e+00 
+Sample (cat T=1.0): "<start> A G R <eos>"
+ITER 146000 TRAINING (phase 1). loss_vae: 0.4135; loss_recon: 0.2906; loss_kl: 287.3355; loss_mmd: -1.9767; Grad_norm: 2.5551e+00 
+Sample (cat T=1.0): "<start> G <eos>"
+ITER 146500 TRAINING (phase 1). loss_vae: 0.3994; loss_recon: 0.2756; loss_kl: 288.6954; loss_mmd: -1.9736; Grad_norm: 1.9922e+00 
+Sample (cat T=1.0): "<start> A T K K <eos>"
+ITER 147000 TRAINING (phase 1). loss_vae: 0.3210; loss_recon: 0.2068; loss_kl: 284.1092; loss_mmd: -1.9760; Grad_norm: 3.1115e+00 
+Sample (cat T=1.0): "<start> F <eos>"
+ITER 147500 TRAINING (phase 1). loss_vae: 0.4035; loss_recon: 0.2887; loss_kl: 270.9503; loss_mmd: -1.9743; Grad_norm: 1.0821e+01 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 148000 TRAINING (phase 1). loss_vae: 0.3612; loss_recon: 0.2397; loss_kl: 282.1108; loss_mmd: -1.9760; Grad_norm: 3.8235e+00 
+Sample (cat T=1.0): "<start> A K K H <eos>"
+ITER 148500 TRAINING (phase 1). loss_vae: 0.3029; loss_recon: 0.1918; loss_kl: 274.4794; loss_mmd: -1.9741; Grad_norm: 1.3511e+00 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 149000 TRAINING (phase 1). loss_vae: 0.3305; loss_recon: 0.2225; loss_kl: 267.1282; loss_mmd: -1.9773; Grad_norm: 2.1367e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 149500 TRAINING (phase 1). loss_vae: 0.3589; loss_recon: 0.2434; loss_kl: 279.3391; loss_mmd: -1.9766; Grad_norm: 2.3647e+00 
+Sample (cat T=1.0): "<start> A F G L <eos>"
+ITER 150000 TRAINING (phase 1). loss_vae: 0.6254; loss_recon: 0.5062; loss_kl: 278.6380; loss_mmd: -1.9725; Grad_norm: 8.3991e+00 
+Sample (cat T=1.0): "<start> C G G V F <eos>"
+ITER 150500 TRAINING (phase 1). loss_vae: 0.7064; loss_recon: 0.5767; loss_kl: 279.0105; loss_mmd: -1.9744; Grad_norm: 8.1171e+00 
+Sample (cat T=1.0): "<start> A K G G <eos>"
+ITER 151000 TRAINING (phase 1). loss_vae: 0.4596; loss_recon: 0.3378; loss_kl: 272.2132; loss_mmd: -1.9744; Grad_norm: 3.6691e+00 
+Sample (cat T=1.0): "<start> A I P R <eos>"
+ITER 151500 TRAINING (phase 1). loss_vae: 0.4365; loss_recon: 0.3163; loss_kl: 277.9814; loss_mmd: -1.9709; Grad_norm: 4.0334e+00 
+Sample (cat T=1.0): "<start> A G D D <eos>"
+ITER 152000 TRAINING (phase 1). loss_vae: 0.4595; loss_recon: 0.3300; loss_kl: 286.9377; loss_mmd: -1.9747; Grad_norm: 1.6198e+01 
+Sample (cat T=1.0): "<start> Y L K P V V <eos>"
+ITER 152500 TRAINING (phase 1). loss_vae: 0.4992; loss_recon: 0.3775; loss_kl: 280.9657; loss_mmd: -1.9755; Grad_norm: 7.8425e+00 
+Sample (cat T=1.0): "<start> W N L R <eos>"
+ITER 153000 TRAINING (phase 1). loss_vae: 0.4256; loss_recon: 0.3014; loss_kl: 300.6123; loss_mmd: -1.9753; Grad_norm: 2.0043e+00 
+Sample (cat T=1.0): "<start> A K P <eos>"
+ITER 153500 TRAINING (phase 1). loss_vae: 0.3900; loss_recon: 0.2725; loss_kl: 278.5799; loss_mmd: -1.9765; Grad_norm: 2.7883e+00 
+Sample (cat T=1.0): "<start> Y G K S A G <eos>"
+ITER 154000 TRAINING (phase 1). loss_vae: 0.3050; loss_recon: 0.1916; loss_kl: 267.4898; loss_mmd: -1.9739; Grad_norm: 9.6125e+00 
+Sample (cat T=1.0): "<start> A S T A <eos>"
+ITER 154500 TRAINING (phase 1). loss_vae: 0.3994; loss_recon: 0.2710; loss_kl: 284.2660; loss_mmd: -1.9765; Grad_norm: 2.3278e+00 
+Sample (cat T=1.0): "<start> P Q L <eos>"
+ITER 155000 TRAINING (phase 1). loss_vae: 0.3448; loss_recon: 0.2224; loss_kl: 281.2551; loss_mmd: -1.9749; Grad_norm: 2.6353e+00 
+Sample (cat T=1.0): "<start> F P <eos>"
+ITER 155500 TRAINING (phase 1). loss_vae: 0.3407; loss_recon: 0.2136; loss_kl: 295.2930; loss_mmd: -1.9757; Grad_norm: 3.9436e+00 
+Sample (cat T=1.0): "<start> G I L E S G L <eos>"
+ITER 156000 TRAINING (phase 1). loss_vae: 0.4758; loss_recon: 0.3573; loss_kl: 280.2886; loss_mmd: -1.9764; Grad_norm: 1.0516e+01 
+Sample (cat T=1.0): "<start> G A R P G R <eos>"
+ITER 156500 TRAINING (phase 1). loss_vae: 0.4756; loss_recon: 0.3508; loss_kl: 287.3130; loss_mmd: -1.9761; Grad_norm: 3.3725e+00 
+Sample (cat T=1.0): "<start> A A G H <eos>"
+ITER 157000 TRAINING (phase 1). loss_vae: 0.3272; loss_recon: 0.2094; loss_kl: 277.5295; loss_mmd: -1.9754; Grad_norm: 2.6895e+00 
+Sample (cat T=1.0): "<start> M L K K <eos>"
+ITER 157500 TRAINING (phase 1). loss_vae: 0.2456; loss_recon: 0.1412; loss_kl: 256.1614; loss_mmd: -1.9748; Grad_norm: 1.7719e+00 
+Sample (cat T=1.0): "<start> E K <eos>"
+ITER 158000 TRAINING (phase 1). loss_vae: 0.3031; loss_recon: 0.1857; loss_kl: 276.4817; loss_mmd: -1.9738; Grad_norm: 1.5351e+00 
+Sample (cat T=1.0): "<start> G N A <eos>"
+ITER 158500 TRAINING (phase 1). loss_vae: 0.3279; loss_recon: 0.2056; loss_kl: 277.2685; loss_mmd: -1.9757; Grad_norm: 1.7142e+00 
+Sample (cat T=1.0): "<start> G I I P F T <eos>"
+ITER 159000 TRAINING (phase 1). loss_vae: 0.4429; loss_recon: 0.3206; loss_kl: 277.0624; loss_mmd: -1.9723; Grad_norm: 4.0961e+00 
+Sample (cat T=1.0): "<start> A G L G G <eos>"
+ITER 159500 TRAINING (phase 1). loss_vae: 0.4415; loss_recon: 0.3126; loss_kl: 280.2922; loss_mmd: -1.9742; Grad_norm: 3.0191e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 160000 TRAINING (phase 1). loss_vae: 0.5006; loss_recon: 0.3640; loss_kl: 278.2849; loss_mmd: -1.9744; Grad_norm: 3.7351e+00 
+Sample (cat T=1.0): "<start> P R P <eos>"
+Saved model to output/amp/model_160000.pt
+ITER 160500 TRAINING (phase 1). loss_vae: 0.4937; loss_recon: 0.3603; loss_kl: 289.0879; loss_mmd: -1.9756; Grad_norm: 3.3267e+00 
+Sample (cat T=1.0): "<start> F G <eos>"
+ITER 161000 TRAINING (phase 1). loss_vae: 0.3474; loss_recon: 0.2287; loss_kl: 277.6756; loss_mmd: -1.9745; Grad_norm: 3.4852e+00 
+Sample (cat T=1.0): "<start> A A L E K G H <eos>"
+ITER 161500 TRAINING (phase 1). loss_vae: 0.5183; loss_recon: 0.3829; loss_kl: 295.7037; loss_mmd: -1.9748; Grad_norm: 4.3751e+00 
+Sample (cat T=1.0): "<start> V G G <eos>"
+ITER 162000 TRAINING (phase 1). loss_vae: 0.4095; loss_recon: 0.2775; loss_kl: 294.1671; loss_mmd: -1.9758; Grad_norm: 4.6151e+00 
+Sample (cat T=1.0): "<start> A E S H L <eos>"
+ITER 162500 TRAINING (phase 1). loss_vae: 0.4302; loss_recon: 0.3025; loss_kl: 291.6467; loss_mmd: -1.9753; Grad_norm: 4.5503e+00 
+Sample (cat T=1.0): "<start> E G N I <eos>"
+ITER 163000 TRAINING (phase 1). loss_vae: 0.4115; loss_recon: 0.2847; loss_kl: 287.5817; loss_mmd: -1.9756; Grad_norm: 2.3032e+00 
+Sample (cat T=1.0): "<start> A E K G V <eos>"
+ITER 163500 TRAINING (phase 1). loss_vae: 0.3987; loss_recon: 0.2705; loss_kl: 291.9517; loss_mmd: -1.9735; Grad_norm: 1.4163e+00 
+Sample (cat T=1.0): "<start> G S I H E <eos>"
+ITER 164000 TRAINING (phase 1). loss_vae: 0.5278; loss_recon: 0.3954; loss_kl: 294.2827; loss_mmd: -1.9761; Grad_norm: 3.3415e+00 
+Sample (cat T=1.0): "<start> I G A A G K <eos>"
+ITER 164500 TRAINING (phase 1). loss_vae: 0.5427; loss_recon: 0.4117; loss_kl: 276.1658; loss_mmd: -1.9750; Grad_norm: 1.9866e+01 
+Sample (cat T=1.0): "<start> G E <eos>"
+ITER 165000 TRAINING (phase 1). loss_vae: 0.5225; loss_recon: 0.4065; loss_kl: 261.0215; loss_mmd: -1.9736; Grad_norm: 1.2095e+01 
+Sample (cat T=1.0): "<start> D V P A A <eos>"
+ITER 165500 TRAINING (phase 1). loss_vae: 0.5048; loss_recon: 0.3790; loss_kl: 282.0569; loss_mmd: -1.9780; Grad_norm: 3.0275e+00 
+Sample (cat T=1.0): "<start> G I S <eos>"
+ITER 166000 TRAINING (phase 1). loss_vae: 0.6137; loss_recon: 0.4840; loss_kl: 291.5432; loss_mmd: -1.9750; Grad_norm: 3.6417e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 166500 TRAINING (phase 1). loss_vae: 0.5167; loss_recon: 0.3926; loss_kl: 286.5417; loss_mmd: -1.9766; Grad_norm: 3.4034e+00 
+Sample (cat T=1.0): "<start> A A T G I L <eos>"
+ITER 167000 TRAINING (phase 1). loss_vae: 0.4337; loss_recon: 0.3102; loss_kl: 273.3150; loss_mmd: -1.9742; Grad_norm: 7.0961e+00 
+Sample (cat T=1.0): "<start> V N A S S I A <eos>"
+ITER 167500 TRAINING (phase 1). loss_vae: 0.3298; loss_recon: 0.2070; loss_kl: 275.2974; loss_mmd: -1.9743; Grad_norm: 3.8373e+00 
+Sample (cat T=1.0): "<start> N I L <eos>"
+ITER 168000 TRAINING (phase 1). loss_vae: 0.5547; loss_recon: 0.4265; loss_kl: 279.0653; loss_mmd: -1.9756; Grad_norm: 4.6808e+00 
+Sample (cat T=1.0): "<start> G M T D L A <eos>"
+ITER 168500 TRAINING (phase 1). loss_vae: 0.5500; loss_recon: 0.4272; loss_kl: 276.5889; loss_mmd: -1.9728; Grad_norm: 4.8213e+00 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 169000 TRAINING (phase 1). loss_vae: 0.5906; loss_recon: 0.4497; loss_kl: 288.9378; loss_mmd: -1.9760; Grad_norm: 5.1780e+00 
+Sample (cat T=1.0): "<start> I L N <eos>"
+ITER 169500 TRAINING (phase 1). loss_vae: 0.4765; loss_recon: 0.3499; loss_kl: 278.2112; loss_mmd: -1.9743; Grad_norm: 8.1963e+00 
+Sample (cat T=1.0): "<start> A V I K <eos>"
+ITER 170000 TRAINING (phase 1). loss_vae: 0.4759; loss_recon: 0.3442; loss_kl: 285.0654; loss_mmd: -1.9751; Grad_norm: 2.5288e+00 
+Sample (cat T=1.0): "<start> A G K H S <eos>"
+ITER 170500 TRAINING (phase 1). loss_vae: 0.5295; loss_recon: 0.4083; loss_kl: 277.2272; loss_mmd: -1.9737; Grad_norm: 6.3052e+00 
+Sample (cat T=1.0): "<start> A G S T L G <eos>"
+ITER 171000 TRAINING (phase 1). loss_vae: 0.4953; loss_recon: 0.3636; loss_kl: 291.8594; loss_mmd: -1.9750; Grad_norm: 2.4609e+00 
+Sample (cat T=1.0): "<start> A L G E <eos>"
+ITER 171500 TRAINING (phase 1). loss_vae: 0.4462; loss_recon: 0.3219; loss_kl: 283.8703; loss_mmd: -1.9754; Grad_norm: 4.1742e+00 
+Sample (cat T=1.0): "<start> C G G D <eos>"
+ITER 172000 TRAINING (phase 1). loss_vae: 0.4162; loss_recon: 0.2945; loss_kl: 276.4965; loss_mmd: -1.9734; Grad_norm: 2.2814e+00 
+Sample (cat T=1.0): "<start> A L L K G <eos>"
+ITER 172500 TRAINING (phase 1). loss_vae: 0.3493; loss_recon: 0.2243; loss_kl: 280.9636; loss_mmd: -1.9726; Grad_norm: 2.3684e+00 
+Sample (cat T=1.0): "<start> A G L I P S L L <eos>"
+ITER 173000 TRAINING (phase 1). loss_vae: 0.5021; loss_recon: 0.3756; loss_kl: 289.1525; loss_mmd: -1.9738; Grad_norm: 2.9422e+00 
+Sample (cat T=1.0): "<start> G L <eos>"
+ITER 173500 TRAINING (phase 1). loss_vae: 0.4298; loss_recon: 0.3167; loss_kl: 265.9578; loss_mmd: -1.9759; Grad_norm: 6.7073e+00 
+Sample (cat T=1.0): "<start> A E N G F L <eos>"
+ITER 174000 TRAINING (phase 1). loss_vae: 0.4845; loss_recon: 0.3563; loss_kl: 283.8953; loss_mmd: -1.9746; Grad_norm: 4.9980e+00 
+Sample (cat T=1.0): "<start> A L G K <eos>"
+ITER 174500 TRAINING (phase 1). loss_vae: 0.6456; loss_recon: 0.5103; loss_kl: 283.1189; loss_mmd: -1.9743; Grad_norm: 2.9581e+00 
+Sample (cat T=1.0): "<start> A G K I A <eos>"
+ITER 175000 TRAINING (phase 1). loss_vae: 0.6270; loss_recon: 0.4905; loss_kl: 292.0361; loss_mmd: -1.9763; Grad_norm: 1.3114e+01 
+Sample (cat T=1.0): "<start> G E K I F <eos>"
+ITER 175500 TRAINING (phase 1). loss_vae: 0.5422; loss_recon: 0.4203; loss_kl: 269.7412; loss_mmd: -1.9739; Grad_norm: 5.7197e+00 
+Sample (cat T=1.0): "<start> S I P F <eos>"
+ITER 176000 TRAINING (phase 1). loss_vae: 0.4388; loss_recon: 0.3040; loss_kl: 289.1923; loss_mmd: -1.9720; Grad_norm: 4.9925e+00 
+Sample (cat T=1.0): "<start> P A I N <eos>"
+ITER 176500 TRAINING (phase 1). loss_vae: 0.4553; loss_recon: 0.3222; loss_kl: 288.5735; loss_mmd: -1.9719; Grad_norm: 3.6394e+00 
+Sample (cat T=1.0): "<start> I N L <eos>"
+ITER 177000 TRAINING (phase 1). loss_vae: 0.5294; loss_recon: 0.3949; loss_kl: 291.1615; loss_mmd: -1.9736; Grad_norm: 8.2045e+00 
+Sample (cat T=1.0): "<start> P L D N F <eos>"
+ITER 177500 TRAINING (phase 1). loss_vae: 0.5989; loss_recon: 0.4701; loss_kl: 279.1086; loss_mmd: -1.9743; Grad_norm: 1.3054e+01 
+Sample (cat T=1.0): "<start> N R P <eos>"
+ITER 178000 TRAINING (phase 1). loss_vae: 0.5397; loss_recon: 0.4163; loss_kl: 288.0440; loss_mmd: -1.9768; Grad_norm: 9.7641e+00 
+Sample (cat T=1.0): "<start> E K S F <eos>"
+ITER 178500 TRAINING (phase 1). loss_vae: 0.5847; loss_recon: 0.4504; loss_kl: 286.9647; loss_mmd: -1.9754; Grad_norm: 4.0249e+00 
+Sample (cat T=1.0): "<start> N P G E S F <eos>"
+ITER 179000 TRAINING (phase 1). loss_vae: 0.4287; loss_recon: 0.3044; loss_kl: 282.7135; loss_mmd: -1.9747; Grad_norm: 2.2235e+00 
+Sample (cat T=1.0): "<start> A G S I L G A <eos>"
+ITER 179500 TRAINING (phase 1). loss_vae: 0.4300; loss_recon: 0.2998; loss_kl: 281.9156; loss_mmd: -1.9763; Grad_norm: 4.8880e+00 
+Sample (cat T=1.0): "<start> I K N <eos>"
+ITER 180000 TRAINING (phase 1). loss_vae: 0.4056; loss_recon: 0.2817; loss_kl: 286.6487; loss_mmd: -1.9739; Grad_norm: 3.6717e+00 
+Sample (cat T=1.0): "<start> A <eos>"
+Saved model to output/amp/model_180000.pt
+ITER 180500 TRAINING (phase 1). loss_vae: 0.6551; loss_recon: 0.5133; loss_kl: 297.0134; loss_mmd: -1.9742; Grad_norm: 4.3940e+00 
+Sample (cat T=1.0): "<start> A G P S T N <eos>"
+ITER 181000 TRAINING (phase 1). loss_vae: 0.3712; loss_recon: 0.2440; loss_kl: 280.9930; loss_mmd: -1.9738; Grad_norm: 3.3416e+01 
+Sample (cat T=1.0): "<start> A G G <eos>"
+ITER 181500 TRAINING (phase 1). loss_vae: 0.4244; loss_recon: 0.2916; loss_kl: 282.7954; loss_mmd: -1.9761; Grad_norm: 1.8784e+00 
+Sample (cat T=1.0): "<start> A G F <eos>"
+ITER 182000 TRAINING (phase 1). loss_vae: 0.5340; loss_recon: 0.4144; loss_kl: 286.6167; loss_mmd: -1.9756; Grad_norm: 5.3814e+00 
+Sample (cat T=1.0): "<start> G Y L <eos>"
+ITER 182500 TRAINING (phase 1). loss_vae: 0.4782; loss_recon: 0.3467; loss_kl: 295.1966; loss_mmd: -1.9755; Grad_norm: 4.2139e+01 
+Sample (cat T=1.0): "<start> A V I K <eos>"
+ITER 183000 TRAINING (phase 1). loss_vae: 0.5065; loss_recon: 0.3683; loss_kl: 286.8940; loss_mmd: -1.9746; Grad_norm: 6.1509e+00 
+Sample (cat T=1.0): "<start> R F <eos>"
+ITER 183500 TRAINING (phase 1). loss_vae: 0.4458; loss_recon: 0.3169; loss_kl: 286.9100; loss_mmd: -1.9761; Grad_norm: 4.8233e+00 
+Sample (cat T=1.0): "<start> T L C G <eos>"
+ITER 184000 TRAINING (phase 1). loss_vae: 0.4380; loss_recon: 0.3064; loss_kl: 288.4647; loss_mmd: -1.9727; Grad_norm: 3.3146e+00 
+Sample (cat T=1.0): "<start> I L K R K E <eos>"
+ITER 184500 TRAINING (phase 1). loss_vae: 0.3985; loss_recon: 0.2734; loss_kl: 279.8878; loss_mmd: -1.9749; Grad_norm: 2.5196e+00 
+Sample (cat T=1.0): "<start> A F G <eos>"
+ITER 185000 TRAINING (phase 1). loss_vae: 0.5397; loss_recon: 0.4102; loss_kl: 291.9886; loss_mmd: -1.9744; Grad_norm: 3.9747e+00 
+Sample (cat T=1.0): "<start> P <eos>"
+ITER 185500 TRAINING (phase 1). loss_vae: 0.3910; loss_recon: 0.2580; loss_kl: 281.4919; loss_mmd: -1.9714; Grad_norm: 1.8703e+00 
+Sample (cat T=1.0): "<start> S I G K <eos>"
+ITER 186000 TRAINING (phase 1). loss_vae: 0.5668; loss_recon: 0.4379; loss_kl: 287.1514; loss_mmd: -1.9727; Grad_norm: 6.7861e+00 
+Sample (cat T=1.0): "<start> A L L E T P <eos>"
+ITER 186500 TRAINING (phase 1). loss_vae: 0.6498; loss_recon: 0.5188; loss_kl: 298.1557; loss_mmd: -1.9775; Grad_norm: 4.6038e+00 
+Sample (cat T=1.0): "<start> A A L G T <eos>"
+ITER 187000 TRAINING (phase 1). loss_vae: 0.6827; loss_recon: 0.5360; loss_kl: 291.6650; loss_mmd: -1.9764; Grad_norm: 1.0966e+01 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 187500 TRAINING (phase 1). loss_vae: 0.4580; loss_recon: 0.3299; loss_kl: 292.4662; loss_mmd: -1.9756; Grad_norm: 2.6905e+00 
+Sample (cat T=1.0): "<start> A L <eos>"
+ITER 188000 TRAINING (phase 1). loss_vae: 0.6307; loss_recon: 0.4976; loss_kl: 288.8334; loss_mmd: -1.9755; Grad_norm: 5.2256e+00 
+Sample (cat T=1.0): "<start> P L T G <eos>"
+ITER 188500 TRAINING (phase 1). loss_vae: 0.7152; loss_recon: 0.5805; loss_kl: 286.9678; loss_mmd: -1.9735; Grad_norm: 5.0091e+00 
+Sample (cat T=1.0): "<start> L L F <eos>"
+ITER 189000 TRAINING (phase 1). loss_vae: 0.5931; loss_recon: 0.4633; loss_kl: 280.6686; loss_mmd: -1.9763; Grad_norm: 6.0214e+00 
+Sample (cat T=1.0): "<start> A G D T <eos>"
+ITER 189500 TRAINING (phase 1). loss_vae: 0.6463; loss_recon: 0.5145; loss_kl: 287.7099; loss_mmd: -1.9742; Grad_norm: 7.2887e+00 
+Sample (cat T=1.0): "<start> A L K E <eos>"
+ITER 190000 TRAINING (phase 1). loss_vae: 0.6322; loss_recon: 0.4777; loss_kl: 306.5815; loss_mmd: -1.9756; Grad_norm: 9.4918e+00 
+Sample (cat T=1.0): "<start> I S A <eos>"
+ITER 190500 TRAINING (phase 1). loss_vae: 0.6748; loss_recon: 0.5406; loss_kl: 290.6812; loss_mmd: -1.9762; Grad_norm: 3.0476e+00 
+Sample (cat T=1.0): "<start> A V Y F <eos>"
+ITER 191000 TRAINING (phase 1). loss_vae: 0.6124; loss_recon: 0.4759; loss_kl: 286.2131; loss_mmd: -1.9759; Grad_norm: 4.0480e+00 
+Sample (cat T=1.0): "<start> N P <eos>"
+ITER 191500 TRAINING (phase 1). loss_vae: 0.7930; loss_recon: 0.6528; loss_kl: 296.0757; loss_mmd: -1.9770; Grad_norm: 5.8728e+00 
+Sample (cat T=1.0): "<start> A G K L R E I A R G <eos>"
+ITER 192000 TRAINING (phase 1). loss_vae: 0.6595; loss_recon: 0.5131; loss_kl: 293.7528; loss_mmd: -1.9762; Grad_norm: 4.5382e+00 
+Sample (cat T=1.0): "<start> L Q W <eos>"
+ITER 192500 TRAINING (phase 1). loss_vae: 0.5710; loss_recon: 0.4388; loss_kl: 295.8886; loss_mmd: -1.9757; Grad_norm: 5.4275e+00 
+Sample (cat T=1.0): "<start> <eos>"
+ITER 193000 TRAINING (phase 1). loss_vae: 0.5339; loss_recon: 0.3908; loss_kl: 296.6492; loss_mmd: -1.9753; Grad_norm: 2.8127e+00 
+Sample (cat T=1.0): "<start> E A L G <eos>"
+ITER 193500 TRAINING (phase 1). loss_vae: 0.7070; loss_recon: 0.5704; loss_kl: 290.3420; loss_mmd: -1.9735; Grad_norm: 7.9984e+00 
+Sample (cat T=1.0): "<start> A G S A F <eos>"
+ITER 194000 TRAINING (phase 1). loss_vae: 0.5324; loss_recon: 0.4014; loss_kl: 279.9656; loss_mmd: -1.9769; Grad_norm: 9.1096e+00 
+Sample (cat T=1.0): "<start> G D <eos>"
+ITER 194500 TRAINING (phase 1). loss_vae: 0.4624; loss_recon: 0.3337; loss_kl: 283.6537; loss_mmd: -1.9754; Grad_norm: 9.3606e+00 
+Sample (cat T=1.0): "<start> A A P S T K <eos>"
+ITER 195000 TRAINING (phase 1). loss_vae: 0.6436; loss_recon: 0.5058; loss_kl: 285.8663; loss_mmd: -1.9739; Grad_norm: 8.2346e+00 
+Sample (cat T=1.0): "<start> G A I P <eos>"
+ITER 195500 TRAINING (phase 1). loss_vae: 0.6447; loss_recon: 0.5058; loss_kl: 284.0513; loss_mmd: -1.9755; Grad_norm: 2.0218e+01 
+Sample (cat T=1.0): "<start> G E T N E I I <eos>"
+ITER 196000 TRAINING (phase 1). loss_vae: 0.5183; loss_recon: 0.3955; loss_kl: 284.6998; loss_mmd: -1.9737; Grad_norm: 4.1930e+00 
+Sample (cat T=1.0): "<start> K L I K <eos>"
+ITER 196500 TRAINING (phase 1). loss_vae: 0.5742; loss_recon: 0.4343; loss_kl: 299.4678; loss_mmd: -1.9742; Grad_norm: 4.7995e+00 
+Sample (cat T=1.0): "<start> T V E F <eos>"
+ITER 197000 TRAINING (phase 1). loss_vae: 0.4975; loss_recon: 0.3673; loss_kl: 287.4833; loss_mmd: -1.9756; Grad_norm: 4.2960e+00 
+Sample (cat T=1.0): "<start> M D K I <eos>"
+ITER 197500 TRAINING (phase 1). loss_vae: 0.5956; loss_recon: 0.4647; loss_kl: 282.9277; loss_mmd: -1.9750; Grad_norm: 3.9152e+00 
+Sample (cat T=1.0): "<start> G S <eos>"
+ITER 198000 TRAINING (phase 1). loss_vae: 0.4530; loss_recon: 0.3341; loss_kl: 278.1693; loss_mmd: -1.9744; Grad_norm: 2.1428e+01 
+Sample (cat T=1.0): "<start> G Q L K L <eos>"
+ITER 198500 TRAINING (phase 1). loss_vae: 0.5618; loss_recon: 0.4321; loss_kl: 287.3563; loss_mmd: -1.9778; Grad_norm: 9.3446e+00 
+Sample (cat T=1.0): "<start> E D P A <eos>"
+ITER 199000 TRAINING (phase 1). loss_vae: 0.4366; loss_recon: 0.3164; loss_kl: 275.6364; loss_mmd: -1.9757; Grad_norm: 3.7529e+00 
+Sample (cat T=1.0): "<start> A T S G F <eos>"
+ITER 199500 TRAINING (phase 1). loss_vae: 0.5395; loss_recon: 0.4074; loss_kl: 285.4668; loss_mmd: -1.9746; Grad_norm: 5.0066e+00 
+Sample (cat T=1.0): "<start> A <eos>"
+ITER 200000 TRAINING (phase 1). loss_vae: 0.5824; loss_recon: 0.4506; loss_kl: 280.8057; loss_mmd: -1.9777; Grad_norm: 6.5445e+00 
+Sample (cat T=1.0): "<start> A G I L E A <eos>"
+/root/miniconda3/lib/python3.8/site-packages/torch/optim/adam.py:48: UserWarning: optimizer contains a parameter group with duplicate parameters; in future, this will cause an error; see github.com/pytorch/pytorch/issues/40967 for more information
+  super(Adam, self).__init__(params, defaults)
+2022-10-15 00:16:42,579 - INFO(root): Evaluating base vae...
+2022-10-15 00:16:46,983 - INFO(root): saving result.json and vae_result.json at output/amp
+Saved model to output/amp/model_200000.pt
+Saving 2000 samples without labels

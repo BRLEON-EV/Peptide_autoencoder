@@ -1,0 +1,1 @@
+python sample_pipeline.py --config_json output/amp/config_overrides.json --samples_outfn_prefix samples --Q_select_amppos 0

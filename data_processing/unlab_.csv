@@ -1,0 +1,500 @@
+text,lab_dummy,source
+A A I Q A P F I N G,tox_negnc,toxinpred_neg_tr
+A D E N L R L I Q S S L P E A V E,tox_negnc,toxinpred_neg_tr
+A I K L V Q S P N G N F A A S F V L D G T K W I F K S K Y Y D S S K G Y W V G I Y E V W D R K,amp_posc,ampep_pos
+M N R L L Q R Q L F L E N L L V G V N S T F H Q M,unk,uniprot
+L Q V D Y L V L E V A,amp_negnc,ampep_neg
+G T K R K R K N,unk,uniprot
+A F Q T S F V F Q R F Y E T N,tox_negnc,toxinpred_neg_sp
+A A I E A P S I N G,tox_negnc,toxinpred_neg_tr
+T H V S E D R V L,unk,uniprot
+G T C S F S S A L C V V H C R V R G Y P D G Y C S R K G I C T C R R,amp_negc,dbaasp_neg
+W G I R R I L K Y G K R S,amp_posc,dbaasp_pos
+A C D Q P L S L N R L S T F W L H E L R R L E I R A P,tox_negnc,toxinpred_neg_tr
+H S D G T F T S E L S R L R E G A R L Q R L L Q G L V,amp_posc,satpdb_pos
+M Q D L K T Y L S T A P V L A I S S F I F L A G L L I E I N R F F P D A L T F A F F,amp_negnc,ampep_neg
+A A V T C I F M T L F G L S L G F A L L K V Q G E,tox_negnc,toxinpred_neg_sp
+Y G G F M T S E K S Q T P L V T L F K N A I I K N V H K K G Q,amp_posc,satpdb_pos
+A D D P E A F A E L K V K E I K N G R L A M F S,tox_negnc,toxinpred_neg_tr
+A D P P I H I A S L,tox_negnc,toxinpred_neg_sp
+A A A Y I G E S M E G H H,tox_negnc,toxinpred_neg_tr
+P V N I Y V I M A D Q G P A H L P V S L A V H T D M L E Y V P V S K D E Y F Q K L K K A,unk,uniprot
+A E I D F S G I P E D I I K Q I K E T N A K P P A,tox_negnc,toxinpred_neg_sp
+M K R T F Q P S V V H R K R T H G F R A R M A T K S G R L V L K R R R A K G R Q R L C P,amp_negnc,ampep_neg
+A L S I L K G L E K L A K M G I A L T N C K A T K K C,amp_posc,ampep_pos
+A A H M G K E G D A T P F T D V T V D N,tox_negnc,toxinpred_neg_tr
+A C Q C P D A I S G W T H T D Y Q C H G L E N K M Y R H V Y A I C M N G T Q V Y C R T E W G S S C,amp_posc,ampep_pos
+M A N R L V F L,unk,uniprot
+S C A S R C K G H C R A R R C G Y Y V S V L Y R G R C Y C K C L R C,unk,uniprot
+A E I L F G D V R P P W M P P P I F P E M P,tox_negnc,toxinpred_neg_sp
+P G G,amp_posc,satpdb_pos
+A A L K G C W T K S I P P K P C S G K R,amp_posc,ampep_pos
+A A K P L D K S S S S L H H G Y S K V H V P,tox_negnc,toxinpred_neg_sp
+A G W L R K L G K K I E R I G Q H T R D A S I Q V L G I A Q Q A A N V A A T A R,amp_posc,ampep_pos
+M K T L I V E,unk,uniprot
+A A V E A P S I N G,tox_negnc,toxinpred_neg_tr
+A I G S I L G A L A K G L P T L I S W I K N R,amp_posc,ampep_pos
+M A W A E S A V E,unk,uniprot
+M S R R N P C K Y,unk,uniprot
+V T M G Y I K D G D G K K I A K K K N K N G R K H V E I D L N K V G,unk,uniprot
+A K E F G I P A A V A G T V L N V V E A G G W V T T I V S I,amp_posc,ampep_pos
+A D D P V Y D A E G N K L V N R G Y Y I I P,tox_negnc,toxinpred_neg_tr
+V I P F V A S V A A E M M Q H V Y C A A S K K C,amp_posc,satpdb_pos
+M E A E Q N Q E,unk,uniprot
+A D L F L R,tox_negnc,toxinpred_neg_sp
+R M P F L M A T,unk,uniprot
+F L S L I P H A I N A V S A I A K H N,amp_negnc,ampep_neg
+A A P R G G K G F F C K L F K D C,amp_posc,ampep_pos
+A L W K N M L K G I G K L A G K A A L G A V K K L V G A E S,amp_posc,ampep_pos
+T L P S P L A L L T V H,amp_posc,satpdb_pos
+M A F L M S E F V,unk,uniprot
+A A P K A T V R W C T I S S,tox_negnc,toxinpred_neg_sp
+R S R G A R R D,unk,uniprot
+F W G S G P F G M F P G G W G G P W N S P W Y G P Y G G Y P Y G G Y G Y P Y G L,amp_negnc,ampep_neg
+M N E L T L I D F Y L C F L A F L L F L V L I M L I I F W F S L E I Q D L E E P C T K V,unk,uniprot
+G K F S V F S K I L R S I A K V F K G V G K V R K G F K T A S D L D K N Q,amp_posc,satpdb_pos
+M K Y S L W A,unk,uniprot
+Q V N F T P G W,unk,uniprot
+A C K W S P E L A A A C E V W K E I T F N F P T I D K L D G Q E,tox_negnc,toxinpred_neg_tr
+M P L N I Q N I I I I I N S S L I I I L F S S I F F F Q L T,unk,uniprot
+M G D A Q M A E,unk,uniprot
+G P I Q I S Y N Y N Y G P C G R Y C G I L G V S P G D N L D C G N Q R,amp_negnc,ampep_neg
+V R L I W A V R I W R R,amp_posc,satpdb_pos
+M S S D D N N I,unk,uniprot
+A G D T S S E A K G M W F G P R L,tox_negnc,toxinpred_neg_sp
+S E N T G A I G K V F P R G N H W A V G H L M,amp_negnc,ampep_neg
+H Q K,amp_posc,satpdb_pos
+M K T R C S P V,unk,uniprot
+L H C H E I S D L T P W I L C S P E P L C G G K G C C A Q E V C D C S G P V C T C P P C L,amp_posc,satpdb_pos
+A I H R A L I C K R M E G H C E A E C L T F E V K I G G C R A E L A P F C C K N R K K H,amp_posc,ampep_pos
+A A T K F I T K L V G R A I I V R D A N R F H H F Q D G L,tox_negnc,toxinpred_neg_tr
+A A I E T P S T N G,tox_negnc,toxinpred_neg_tr
+A A E E A A P P A A A A T A E P,tox_negnc,toxinpred_neg_tr
+A E P L A S Q L K E P I A G G G W W A A,tox_negnc,toxinpred_neg_sp
+A D N R R P I W V M L L S S Y W Q D G N S L G V D A I M T N Y P E D V K,amp_negnc,ampep_neg
+Q L G L Q D P P H M V A D L S K K Q G P W V E E E E A A Y G W M D F,amp_posc,satpdb_pos
+A A V P E A A A E A T A E A A P V S E F,tox_negnc,toxinpred_neg_sp
+A L S I L R G L E K L A K M G I A L T N C K A T K K C,amp_posc,ampep_pos
+L I G L V S K G T C V L V K T V C K K V L K Q,unk,uniprot
+M P R V Y S P T,unk,uniprot
+R I C P R I L M E C K A D S D C L A Q C I C Q E N G F C G,amp_negnc,ampep_neg
+A A Q S I S Y E I P L T L C V L S I S L L S N S S S T V D I V E A,tox_negnc,toxinpred_neg_tr
+A E Y P N D V N L T V Y W D P,tox_negnc,toxinpred_neg_sp
+A E Y D V S D A D I E A F Y Q,tox_negnc,toxinpred_neg_sp
+A A G M G F F G A R,amp_posc,ampep_pos
+A L W F T M L K K L G T M A L H A G K A A L G A A A N T I S Q G T Q,amp_posc,ampep_pos
+A F Q L D T N L V E S L Q K,tox_negnc,toxinpred_neg_sp
+M V G W W G I N V,unk,uniprot
+A A A L S Q A A D N L R,tox_negnc,toxinpred_neg_sp
+A A L E V P S L N G,tox_negnc,toxinpred_neg_tr
+A A A A P G A A G G A Q L P L G N R E R K A G C K N F F W K T F S S C,tox_negnc,toxinpred_neg_sp
+A D G S D P A G G E F L A E G G G V R,tox_negnc,toxinpred_neg_sp
+A A H M G K E G D A T P F T D V T V,tox_negnc,toxinpred_neg_tr
+I I D Y Y D E G E E D R D V G V V D A R,amp_negnc,ampep_neg
+P L V E G Q L G E N N E L R L,amp_posc,satpdb_pos
+A F K L L G R I I H H V G N F V Y G F S H V F,amp_posc,ampep_pos
+M N N E I P K R S,unk,uniprot
+A D G S D P A S G E F L T E G G G V R,tox_negnc,toxinpred_neg_sp
+M P L S W F F P R T W G K R,amp_posc,satpdb_pos
+M D I D H Y K E F,unk,uniprot
+A A V E V P S I E G,tox_negnc,toxinpred_neg_tr
+A E R V G A G A P V Y L,amp_posc,ampep_pos
+A D T G E G E F L A E G G G V R,tox_negnc,toxinpred_neg_sp
+M R N D V L T L T N P M E E K E L E Q I L G G G N G V L K T I S H E C N M N T W Q F L F T C C,amp_negnc,ampep_neg
+A L R L A I R K R,amp_posc,ampep_pos
+A I S C G Q V S S A I G P C L S Y A R G Q G S A P S A G C C,amp_posc,ampep_pos
+A A I E V P S T N G,tox_negnc,toxinpred_neg_tr
+A A C S D R A H G H I C E S F K S F C K D S G R N G V K L R A N C K K T C G L C,amp_posc,ampep_pos
+A A V E A I S I D G,tox_negnc,toxinpred_neg_tr
+M K R T F Q P S V L K R N R S H G F R A R M A N K N G R Q V L A R R R A K G R T R L T V S H,amp_negnc,ampep_neg
+A L K A A L L A I L K I V R V I K K,amp_posc,ampep_pos
+A G E G L S S P F W S L A A P Q R F,tox_negnc,toxinpred_neg_sp
+S N G S N I D V A G A V N T L V E T A G K L F Q,amp_negnc,ampep_neg
+F G V L A V T S R,unk,uniprot
+A A L E V P S I N G,tox_negnc,toxinpred_neg_tr
+A A V S L L Q N K L A Y D G F L S K,tox_negnc,toxinpred_neg_sp
+A A E E A A P P A A T A T A E G E A P P,tox_negnc,toxinpred_neg_tr
+A A K P M G I T C D L L S L W K V G H A A C A A H C L V L G D V G G Y C T K E G L C V C K E,amp_posc,ampep_pos
+C C H P A C G K H F S C,amp_posc,satpdb_pos
+R K Q G I S G P L,unk,uniprot
+P E F V N D D G V,unk,uniprot
+M D V N P T L L,unk,uniprot
+M L T L K I A V Y I V V A F F I S L F V F G F L S S D P T R N P G R K D F E,amp_negnc,ampep_neg
+M E N M H Q D P,unk,uniprot
+A D E N L R L I R S S L L E A V E,tox_negnc,toxinpred_neg_tr
+A I H R A L I C K R M E G H C E A E C L T F E A K I G G C R A E L A P F C C K N R K K H,amp_posc,ampep_pos
+A A L A L G I A N Q L T N I L R D V G E,tox_negnc,toxinpred_neg_tr
+M S L L T E V E T,unk,uniprot
+A A F R G C W T K N Y S P K P C L,amp_posc,ampep_pos
+A K I P I K A I K T V G K A V G K G L R A I N I A S T A N D V F N F L K P K K R K H,amp_posc,ampep_pos
+A L L H H G L N C A K G V L A,amp_posc,ampep_pos
+M K L L I V L T C I S L C S C I C T V V Q R C A S N K P H V L E D P C K V Q H,unk,uniprot
+C H N L K R P T C,amp_posc,satpdb_pos
+I L M C F S I D S,amp_posc,satpdb_pos
+A A V I G D T I G D P L K D T S G P S L N I L K,tox_negnc,toxinpred_neg_tr
+A F E L P A L P Y A K D A L E P H I S A,tox_negnc,toxinpred_neg_sp
+M E S T T S G F,unk,uniprot
+M E A L V Y T F L L V S T L G I I F F A I F F R E P P K V P V P T K K A K,amp_negnc,ampep_neg
+A D Y L Q L A R,tox_negnc,toxinpred_neg_sp
+A D S L T Q F D G I K G R Y S H E A F Y E E K A C D S C H L N K,tox_negnc,toxinpred_neg_sp
+G W K I G K K L E H H G Q N I R D G L I S A G P A V F A V G Q A A T I Y A A A K,amp_posc,satpdb_pos
+F Y D P L V F P S D E F D A S I S Q V N E K I N Q S L A F I R K S D E,amp_posc,satpdb_pos
+A A V E V P S I N G,tox_negnc,toxinpred_neg_tr
+A D R E P N H F V A,tox_negnc,toxinpred_neg_sp
+A G F V L K G Y T K T S Q,amp_posc,ampep_pos
+A E P N V T V T G A A G Q I G Y A L L F R I,tox_negnc,toxinpred_neg_sp
+A E I D F S G I P E D I I K E I K E T N A K P P A,tox_negnc,toxinpred_neg_sp
+A L W K T L L K K V G K V A G K A V L N A V T N M A N Q N E Q,amp_posc,ampep_pos
+M P R Y R L F R R I D R V G K,amp_posc,satpdb_pos
+A A F L A L Y L Y F G P S F V,tox_negnc,toxinpred_neg_tr
+A C I K N G G R C V A S G G P P Y C C S N Y C L Q I A G Q S Y G V C K K H,amp_posc,ampep_pos
+A A H M G K E G D A T P F T D V T V D N I S K,tox_negnc,toxinpred_neg_tr
+L R K R L R K F R N K I K E K L K K I G Q K I Q G F V P K L,amp_posc,dbaasp_pos
+M K M A S S D A A,unk,uniprot
+A F N L R N R N F L K L L D F T P R E I Q Y M I D L A I D L,tox_negnc,toxinpred_neg_sp
+A A T A A T P A T A A T P A T A A R A,tox_negnc,toxinpred_neg_sp
+M E P E C N L N C T D,amp_posc,satpdb_pos
+A C G G T T K Y A T P F S T P S I E A I T E Q L H R A G F S R,tox_negnc,toxinpred_neg_tr
+A E N R E R V M V Q G E E E N T K E L T G I E F E N G F I S C M Q N,tox_negnc,toxinpred_neg_sp
+E F V N D D G V,unk,uniprot
+A A I Q A P S I N G,tox_negnc,toxinpred_neg_tr
+A C Y C R I P A C I A G E R R Y G T C I Y Q G R L W A F C C,amp_posc,ampep_pos
+A C E V W K E I K F E F E A M D T L,tox_negnc,toxinpred_neg_tr
+Q P N P N E F F G L M,amp_negnc,ampep_neg
+G L V G E I I S R G D F A I D I G R,unk,uniprot
+M E H F R W,amp_posc,satpdb_pos
+M K T W G N L V,unk,uniprot
+M K P R L C F N F R R R S I S P C Y I S I S Y L L V A K L F K L F K I H,unk,uniprot
+A D T L A C R Q S H G S C S F V A C R A P S V D I G T C R G G L K K C C K W,amp_posc,ampep_pos
+P C N F F T S A,unk,uniprot
+A C G G T S K Y A T P F S T P S I E A T T E Q L H R A G F S R,tox_negnc,toxinpred_neg_tr
+A E V L M D F P Q L T M T L P D G R E E S V M K R T T L V A,tox_negnc,toxinpred_neg_sp
+K W K L F K K G I G A V L K V,amp_posc,satpdb_pos
+A A L E A P R I L N L N N N P Y F K G T S,tox_negnc,toxinpred_neg_tr
+A L L D K L K S L G K V V G K V A L G V A Q H Y L N P Q Q,amp_posc,ampep_pos
+A G E P A N N E D R F N Y,tox_negnc,toxinpred_neg_sp
+A D D S D P V G G E F L A E G G G V R,tox_negnc,toxinpred_neg_sp
+G G V P C L C D S D G P S V R G N T L S G I I W L A G C P S G W H N C K A H G P T I G W C C K Q,unk,uniprot
+E Q S A G F R E Y I D F F D G Y S L T Y,amp_negnc,ampep_neg
+A I P C G E S C V W I P C I S T V I G C S C S N K V C Y R,amp_posc,ampep_pos
+A A S S S P P A S P Y D P S K L H L G W F Q,tox_negnc,toxinpred_neg_tr
+A K R G G F W R K V G R K L G K G I R K I G K T I K S Q L G K F R P R L Q Y R Y Q F,amp_posc,ampep_pos
+A A V Q A P A I N G,tox_negnc,toxinpred_neg_tr
+A I H R A L I S K R M E G H C E A E C L T F E V K T G G C R A E L A P F C C K N R K K H,amp_posc,ampep_pos
+A C L Y A G I N I S G T N G E V M P G Q W E Y Q V G P S V G I E A,tox_negnc,toxinpred_neg_tr
+A D Y L Q L T R A,tox_negnc,toxinpred_neg_sp
+A Y M L K Y D S T,unk,uniprot
+A A G Q D N F M R F,tox_negnc,toxinpred_neg_sp
+A C W W A G I A Q E F,amp_posc,satpdb_pos
+A D N K N P L E E C F R E T N Y E E F L E I A R,amp_posc,ampep_pos
+R A,amp_posc,satpdb_pos
+A L G G L L A D V V K S K E Q P A,amp_posc,ampep_pos
+A A V E A P A I N G,tox_negnc,toxinpred_neg_tr
+A A I E A P A I N G,tox_negnc,toxinpred_neg_tr
+A C Y C R I P A C F A G E R R Y G T C F Y L G R V W A F C C,amp_posc,ampep_pos
+S D G R D D E A K D K R S D M Y E S D R N G R C C H P S C G R K Y N C G R,amp_posc,satpdb_pos
+G A A C F C D S D G P S V S G N T L S G I L W L A G C P S G W H N C K A H G P N I G W C C K K,unk,uniprot
+G Y Y Y P Y H G G H Y Y G A H Y G G Y P Y G H F Y N Y R H T P Y Y S G L R Y Y G S Y G Y P H H F,amp_negnc,ampep_neg
+A D V D F T G I A D S I I K,tox_negnc,toxinpred_neg_sp
+A F C N L R M C Q L S C R S L G L L G K C I G D K C E C V K H,amp_posc,satpdb_pos
+M K R T F Q P S N L R R A R T H G F R E R M S T K N G R K V L A R R R A K G R K T L T A,amp_negnc,ampep_neg
+A F T C H C R R S C Y S T E Y S Y G T C T V M G I N H R F C C L,amp_posc,ampep_pos
+A L F S I L R G L K K L G N M G Q A F V N C K I Y K K C,amp_posc,ampep_pos
+A A C E V W K E I K F E F P A M D T L,tox_negnc,toxinpred_neg_tr
+A A I E V P S L N G,tox_negnc,toxinpred_neg_tr
+I P Q E V L P,amp_posc,satpdb_pos
+A K I P I K A I K T V G K A V G K G L R A I N I A S T A N D V F N F L K P K K R K A,amp_posc,ampep_pos
+A I M D T I K D T A K T V A V G L L N K L K C K I T G C,amp_posc,ampep_pos
+M S S D D N N I R,unk,uniprot
+A L L G D F F R K S K E K I G K E F K R I V Q R I K D F L R N L V P R T E S,amp_posc,ampep_pos
+L D T I K C L Q G N N N C H I Q K C P W F L L Q V S T C Y K G K G R C C Q K R R W F A R S H V Y H V,amp_posc,satpdb_pos
+A L F S I L R G L K K L G K M G Q A F V N C E I Y K K C,amp_posc,ampep_pos
+A E V L M D F P Q L T M T L P D G R E E S V M K L T T L V A,tox_negnc,toxinpred_neg_sp
+A A A P F,tox_negnc,toxinpred_neg_sp
+S F V N E D G V E,unk,uniprot
+A A V E A P F I N G,tox_negnc,toxinpred_neg_tr
+M G,amp_posc,satpdb_pos
+A H C L A I G R K,amp_posc,ampep_pos
+M H N K I P K G S,unk,uniprot
+A A I E A P T N G,tox_negnc,toxinpred_neg_tr
+A A T K F I A K I T R R P I I V R D A T R F H H F E D D F,tox_negnc,toxinpred_neg_tr
+A I T C G Q V S S A L S S C L G Y L K N G G A V P P G S S C G I K N L N S A,unk,uniprot
+R I P T G E R V W D R G N V T L L C D C,amp_posc,satpdb_pos
+M E E I K P I S V,unk,uniprot
+M A A R L C C Q,unk,uniprot
+A C S A G,amp_posc,ampep_pos
+A E P R D Q F K,tox_negnc,toxinpred_neg_sp
+A A E A P S T N G,tox_negnc,toxinpred_neg_tr
+A I H R A L I C K R M E G H C E A E C L T F E V K I G G C R A E L T P Y C C K K R K K D,amp_posc,ampep_pos
+W V E K E T Y Y,unk,uniprot
+A L L D K L K S L G K V V G K V A L G V V Q N Y L N P R Q,amp_posc,ampep_pos
+A C V P V Y K E C W Y P Q K P C C E D R V C Q C S F G M T N,amp_posc,satpdb_pos
+A A L R G C W T K S I P P K P C S G K R,amp_posc,ampep_pos
+A D N P G D D G N,tox_negnc,toxinpred_neg_sp
+A L W K N M L K G I G K L A G Q A A L G A V K T L V G A E S,amp_posc,ampep_pos
+V G S G G C M F G N G K,amp_posc,satpdb_pos
+A A L K G C W T K S I P P K P C F G K R,amp_posc,ampep_pos
+A A Q E G E T L T V E E T V,tox_negnc,toxinpred_neg_sp
+A A A Q P L P D D D D E A F E,tox_negnc,toxinpred_neg_tr
+A L W K D I L K N V G K A A G K A V L N T V T D M V N Q,amp_posc,ampep_pos
+G V S C L C D S D G P S V R G N T L S G I L W F Y P S G C P S G W H N C K A H G P T I G W C C K Q,unk,uniprot
+A K A W G I P P H V I P Q I V P V R I R P L C G N V,amp_posc,ampep_pos
+A V K P P W R C K A A F C,amp_posc,satpdb_pos
+D L W N S I K D M A A A A G R A A L N A V T G M V N Q,amp_negnc,ampep_neg
+A C G G I S K Y A T P F S T P S I E A I T E Q L H R A G F S R,tox_negnc,toxinpred_neg_tr
+A L W K T M L K K L G T M A L H A G K A A L G A A A D T I S Q G T Q,amp_posc,ampep_pos
+M S Q I S T K H R T V L F R R W M A I I C C L I I N I A Y L V Y,amp_negnc,ampep_neg
+H A W N Y I F,amp_posc,satpdb_pos
+A C D T A T C V T H R L A G L L S R S G G V V K N N F V P T N V G S K A F,amp_posc,ampep_pos
+M I Q C S T V A,unk,uniprot
+A A P V V E V V A A P A A A D D,tox_negnc,toxinpred_neg_tr
+S N T V S S F Q,unk,uniprot
+M Q L F H L C L I,unk,uniprot
+M V K R K A N H V I N G M N D A K S Q G K G A G Y I E N D Q L V L T E E E R Q N N K K R K T N Q,amp_negnc,ampep_neg
+G P I R R P K P R P R Q R P E,amp_posc,satpdb_pos
+A L W K N M L K G I G K L A G Q A A L G A V K T L V G A,amp_posc,ampep_pos
+A L W K T M L K K L G T M A L H A G K A A F G A A A D T I S Q,amp_posc,ampep_pos
+A C G G T S K Y A T P F S T P S I E A I T E Q L H R A G F S R,tox_negnc,toxinpred_neg_tr
+C R G S G A G R C,amp_posc,satpdb_pos
+A A V P S G A S T G V Y E A L E L R F R A P V E P Y,tox_negnc,toxinpred_neg_sp
+A A V E L H L Q M D N I S V L V Y T S F,tox_negnc,toxinpred_neg_tr
+A C E V W K E I K F E F Q A M D T L,tox_negnc,toxinpred_neg_tr
+A A E V S S T N G,tox_negnc,toxinpred_neg_tr
+A C Y C R I P A C L A G E R R Y G T C F Y L G R V W A F C C,amp_posc,ampep_pos
+D C C R K P F R K H C W D C T A G T P Y Y G Y S T R N I F G C T C,unk,uniprot
+A E F G P S Q P F K G A K,tox_negnc,toxinpred_neg_sp
+A D G S D P A G G E F L E A G G G V R,tox_negnc,toxinpred_neg_sp
+M D I D P Y K E,unk,uniprot
+A A I E A P S K N G,tox_negnc,toxinpred_neg_tr
+G L T D Q K S A P P G L,unk,uniprot
+A E S E A G D A S P L V T E V L I G S P P G Y V G Y T E G G,tox_negnc,toxinpred_neg_sp
+A L W K D V L K K I G T V A L H A G K A A L G A V A D T I S Q,amp_posc,ampep_pos
+A G I G K I G D F I K K A I A K Y K N,amp_posc,ampep_pos
+C M Q S A A A H C,amp_posc,satpdb_pos
+A I L T T L A N W A R K F L,amp_posc,ampep_pos
+A F L T L T P G S H V D S Y V E A,tox_negnc,toxinpred_neg_sp
+Y S Q V A R P R F,unk,uniprot
+G L L D S L K G F A A T A G K G V L Q S L L S T A S C K L A K T C,amp_negnc,ampep_neg
+A E A A G L L P F P R V,tox_negnc,toxinpred_neg_sp
+A D R E L H R S K A,tox_negnc,toxinpred_neg_sp
+A E L P Q G L W V R P R L,tox_negnc,toxinpred_neg_sp
+A D E K A Q S A T K E A E P A A P V G F T P,tox_negnc,toxinpred_neg_tr
+A A A A G F E K G I D R D F E P V L S M T P L N,tox_negnc,toxinpred_neg_tr
+A D Y L Q L A R A,tox_negnc,toxinpred_neg_sp
+C Y I N N C P V G,amp_negnc,ampep_neg
+A A G L F Q F P R V,tox_negnc,toxinpred_neg_sp
+I I G G D E C N I N E H R F L,amp_negnc,ampep_neg
+K Q G I S G P L,unk,uniprot
+R R L H P Q H Q R F P R E R P W P K P L S L P L P R P G P R P W P K P L,amp_posc,satpdb_pos
+T T N,amp_posc,satpdb_pos
+A A K L L L N P K F R C K A A F C,tox_negnc,toxinpred_neg_sp
+L R W,amp_posc,satpdb_pos
+A E P V E P W S,tox_negnc,toxinpred_neg_sp
+A G E T H T V M I N H A G R G A P K L V V G G K K L S,tox_negnc,toxinpred_neg_sp
+A C G G T L K Y A T P F S T P S I E A T T E Q L H R A G F S R,tox_negnc,toxinpred_neg_tr
+G L N A L K K V F Q G F H E A I K L I N N H V Q,amp_negc,dbaasp_neg
+A D E D L R L I R S S L P E A V E,tox_negnc,toxinpred_neg_tr
+A A L E A P S T N G,tox_negnc,toxinpred_neg_tr
+I E Y N I I R V,unk,uniprot
+A A Y G H F G R D D P D F T W E V V K P L K W D N K V Q A,tox_negnc,toxinpred_neg_tr
+G R R P M K L N K T P,amp_posc,satpdb_pos
+A D A G Y A P A A P G T Q P K A,tox_negnc,toxinpred_neg_tr
+A C G R V F N F E A G P A M L P L E,tox_negnc,toxinpred_neg_tr
+A A N F G P S V F T P E V H E T W Q K F L N V V V A A L G K Q Y H,amp_posc,ampep_pos
+A D T G D G D F I T E G G G V R,tox_negnc,toxinpred_neg_sp
+A A A G D N F M R F,tox_negnc,toxinpred_neg_sp
+A C Y C R I P A C L A G E R R Y G T C F Y M G R V W A F C C,amp_posc,ampep_pos
+C F I R N C P K G,unk,uniprot
+M T E I D N L T S,unk,uniprot
+A A L K V V S R I T G R E V L V R D T N R F H Y F A D G M,tox_negnc,toxinpred_neg_tr
+A C Y C R I G A C V S G E R L T G A C G L N G R I Y R L C C R,amp_posc,ampep_pos
+A A V P E N V K E A S E W D I Y W K S K Q G G A K F D A G L,tox_negnc,toxinpred_neg_tr
+A A V E V P S T N G,tox_negnc,toxinpred_neg_tr
+A D E N L R L I R S P L P E A V E,tox_negnc,toxinpred_neg_tr
+A A A A P P R R G P S G P D A,tox_negnc,toxinpred_neg_sp
+M S S D M R V H,unk,uniprot
+Q G P W M E E E E A A Y G W M D F,amp_negnc,ampep_neg
+A A K D I K F G V E A R A L M L R G V E E L A D A V K V T M,tox_negnc,toxinpred_neg_tr
+A A G E A P A I N G,tox_negnc,toxinpred_neg_tr
+A A T K Y I S K V T G R E I I A R D A S R F H H F K D G V,tox_negnc,toxinpred_neg_tr
+M A A R M Y C Q,unk,uniprot
+A D A G Y T P A A P A A T G A G G D A T,tox_negnc,toxinpred_neg_tr
+A F V Q E P L P Y,tox_negnc,toxinpred_neg_sp
+A A V E A N S I N G,tox_negnc,toxinpred_neg_tr
+A A A S D N F M R F,tox_negnc,toxinpred_neg_sp
+M R N I K T Y L S T V P V L T T L W F G S L A G L L I E I N R L F P D A L L F P F F S F,amp_negnc,ampep_neg
+T C L A R D E L C G A S F L S N F L C C D G L C L L I C V,amp_posc,satpdb_pos
+A H D R N P L E E Y F R E T D Y E E F L,amp_posc,ampep_pos
+A A V E A P S T N G,tox_negnc,toxinpred_neg_tr
+A D R G W I K T L T K D C P N V I S S I C A G T I I T A C K N C A,amp_posc,ampep_pos
+I I C A P E G G P C V A G I G C C A G L R C S G A K L G L A G S C Q,amp_posc,satpdb_pos
+A E L P Q G L W V R P R L G,tox_negnc,toxinpred_neg_sp
+F V N E D G V E,unk,uniprot
+D E K P K L I L P T P A P P N L P Q L V G G G G G N R K D G F G V S V D A H Q K V W T S D N G G H S,amp_posc,satpdb_pos
+G D C G G T C T W T K D C S I C P S W S C W S W S C,amp_posc,satpdb_pos
+G S V F N C G E T C V L G T C Y T P G C T C N T Y R V C T K D,amp_posc,satpdb_pos
+K R D P Q Q R E Y E D C R R R C E Q Q E P R Q Q Y Q C Q R R C R E Q Q,amp_posc,satpdb_pos
+G C A S R C K A K C A G R R C K G W A S A S F R G R C Y C K C F R C,unk,uniprot
+A A N L E R L A L P Q I E D I V R A S K R A C Y R S K,tox_negnc,toxinpred_neg_tr
+A A Y I G E S M E G H H,tox_negnc,toxinpred_neg_tr
+A A A P D I P I A N V N A,tox_negnc,toxinpred_neg_sp
+A E V F K S E E G S V D F Y G Q L R P A,tox_negnc,toxinpred_neg_sp
+S C D S E F S S E F C E Q P E E R I C S C S T H V C C H L S S S K R D Q C M T W N R C L S A Q T G N,amp_posc,satpdb_pos
+M I S D E Q L N S L A I T F G I V M M T L I V I Y H A V D S T M S P K N,unk,uniprot
+A A G F W K A T G R D K G I Y S K H D L I G M R K,tox_negnc,toxinpred_neg_tr
+C S A P F T K S C,amp_posc,satpdb_pos
+A A H M G K E G D A T P F T D V T,tox_negnc,toxinpred_neg_tr
+A E V A P A P A A A A P A K A P K K K A A A K P K K A G P S,amp_posc,ampep_pos
+A C Y C R I P A C L A G E R R Y G T C F Y R R R V W A F C C,amp_posc,ampep_pos
+A G Y L L G K I N L K A L A A L A K K I L,amp_posc,ampep_pos
+M A L N I A S I,unk,uniprot
+A D Y L R L A R A,tox_negnc,toxinpred_neg_sp
+A A V E A P Y T N G,tox_negnc,toxinpred_neg_tr
+A A V E V P F T N G,tox_negnc,toxinpred_neg_tr
+A G D N D Y N P I G E Y G G V D K I N D L T V Y V,tox_negnc,toxinpred_neg_sp
+A E Y T L P D L G W D Y A A S G P G,tox_negnc,toxinpred_neg_sp
+A A T A A T A A T A A T A A T A A T A A T A A T A A T A A T A,tox_negnc,toxinpred_neg_sp
+G D C S C E G Q I C K C G Y R V S P G K S G C A C T C R N A K,amp_posc,satpdb_pos
+M K M A S N D A A,unk,uniprot
+S M I G G V M S K G,unk,uniprot
+A L W K T I I K G A G K M I G S L A K N L L G S Q A Q P E S,amp_posc,ampep_pos
+A D K W W G E Q L L G R G D D G D L W A V S A A P V T R G E L R A,tox_negnc,toxinpred_neg_sp
+A L E P,amp_posc,satpdb_pos
+A G W G S I F K H I F K A G K F I H G A I Q A H N D,amp_posc,ampep_pos
+A F S S W G,tox_negnc,toxinpred_neg_sp
+A C G G T L R Y A T P F A T P S V E S I T E Q L H R A G F C R W G N E,tox_negnc,toxinpred_neg_tr
+A E V Q D K G E F L A E G G G V R,tox_negnc,toxinpred_neg_sp
+F R I R V R V,amp_posc,satpdb_pos
+A D S R K P D D R Y D M S G N D A L G D V K L A T Y E D N P W E T F K,amp_negnc,ampep_neg
+L N W G A I L K H I I K,unk,uniprot
+N P S L F P S A,unk,uniprot
+K L C L G W L W G,unk,uniprot
+A D T L A C R Q S H Q S C S F V A C R A P S V D I G T C R G G K L K C C K W A P S S,amp_posc,ampep_pos
+A C K W S P E L A A A C E V W K E I K F E F D T I D T L,tox_negnc,toxinpred_neg_tr
+M D P T I S V S K,unk,uniprot
+A L W L A I R K R,amp_posc,ampep_pos
+E R V C C G Y P M S C K S R A C K P S Y C C,amp_posc,satpdb_pos
+A C K W S P E L A A A C E V W K A I K F E F E P V D T I D K,tox_negnc,toxinpred_neg_tr
+V G T R H D F M F,unk,uniprot
+M D S K Y Q C V K,unk,uniprot
+S D H S E S I Q K K F Q L M K E H V N K I G V D S,amp_posc,satpdb_pos
+F G V L N F F,unk,uniprot
+A G E P K L D A G V,tox_negnc,toxinpred_neg_sp
+A A E V P S I N G,tox_negnc,toxinpred_neg_tr
+A G D K P G D A L L D E W L G,tox_negnc,toxinpred_neg_sp
+H Y,amp_posc,satpdb_pos
+A E V Y N K D G N K L D I Y G K A V G L H Y F S,tox_negnc,toxinpred_neg_sp
+C V K R G L K L R H V R P R V T R D V,amp_posc,satpdb_pos
+A A L R G C W T K S I P P K P C P G K R,amp_posc,ampep_pos
+A L L D K L K S L G K V V G K V A I G V A Q H Y L N P Q,amp_posc,ampep_pos
+A A Q P T R T V Y D I L R K A E F F K D K E R T L S,tox_negnc,toxinpred_neg_tr
+A D G S D P V G G E S L P D T G G A R,tox_negnc,toxinpred_neg_sp
+F L W G L I P G A I S A V T S L I K K,amp_posc,satpdb_pos
+A C G G I S Q Y A T P F S T P S I E A I T E Q L H R A G F S R,tox_negnc,toxinpred_neg_tr
+A D D P V Y D A D G N K L V N R G Y Y I,tox_negnc,toxinpred_neg_tr
+M A A R V C C Q L,unk,uniprot
+A L W M T L L K K V L K A A A K A L N A V L V G A N A,amp_posc,ampep_pos
+A L W K T L L K N V G K A A G K A A L N A V T D M V N Q,amp_posc,ampep_pos
+A G C I K N G G R C N A S A G P P Y C C S S Y C F Q I A G Q S Y G V C K N R,amp_posc,ampep_pos
+A A I E A P S T K G,tox_negnc,toxinpred_neg_tr
+A A D D V T V V I G S A A P M S G P Q,tox_negnc,toxinpred_neg_sp
+A C A A H C L L R G N R G G Y C N G K G,amp_posc,ampep_pos
+M D Q F I S A F L,unk,uniprot
+A A D I F A K F K T S M E V K,tox_negnc,toxinpred_neg_sp
+A G D D E T L L K P V L N S L D N L V S G L,tox_negnc,toxinpred_neg_sp
+A D A G Y A P A T P A A A G A A A G,tox_negnc,toxinpred_neg_tr
+G I W D T I K S M G K V F A G K I L Q N,amp_posc,satpdb_pos
+K V V K Q W P I G K V V K K V V K K V V K,amp_posc,satpdb_pos
+A C E V T Q L A V C A S A I L G G T K P S G E C C G N L,tox_negnc,toxinpred_neg_sp
+A A F L G L Y L Y F G P S F V,tox_negnc,toxinpred_neg_tr
+A C N F Q S C W A T C Q A Q H S I Y F R R A F C D R S Q C K C V F V R G,amp_posc,ampep_pos
+A E E L V K P Y N G D P F V G H L S T P,tox_negnc,toxinpred_neg_sp
+A I H D I L K Y G K P S,amp_posc,ampep_pos
+R Q L A S A V P Q,unk,uniprot
+A D L T R,tox_negnc,toxinpred_neg_sp
+A A K I K K G D N V V V L T G,tox_negnc,toxinpred_neg_sp
+M T A T I L V A D D D A A I R T V L N Q A L S R A G,unk,uniprot
+A A L K A L S L G K S L S T G N S K S F F V R,tox_negnc,toxinpred_neg_tr
+K H F G K D S N F P F G T,unk,uniprot
+A E A A A A P A P A A A P A,tox_negnc,toxinpred_neg_sp
+A A I K A F S L A K S I S T R N S K S F F V R Q T S N Q N L E,tox_negnc,toxinpred_neg_tr
+A D K N F L R F,tox_negnc,toxinpred_neg_sp
+M G F M V A D L W,unk,uniprot
+A C G W A G I K Q E F,amp_posc,satpdb_pos
+A E K L E P V L P L I V,tox_negnc,toxinpred_neg_sp
+A D A G Y A P A T P A T P A A G A T P A,tox_negnc,toxinpred_neg_tr
+A D A G Y A P A T P A A A G A E A G K A,tox_negnc,toxinpred_neg_tr
+C V N W K K I L G K I I K V V K,amp_posc,satpdb_pos
+Y P S K P D N P G E D A P A E D M A R Y Y S A L R H Y I N L I T R Q R Y,unk,uniprot
+N N R S P Q L R L R F,amp_negnc,ampep_neg
+A G E S S N E A K G M W F G P R L,tox_negnc,toxinpred_neg_sp
+A G C K N F F W K T F T S C,tox_negnc,toxinpred_neg_sp
+D I L K R M S K,unk,uniprot
+A D L I Q R R Q R S E F Q S D I K G I L Y T V I K K N P D L,tox_negnc,toxinpred_neg_sp
+A C Q F W S C N S S C I S R G Y R Q G Y C W G I Q Y K Y C Q C Q,amp_posc,ampep_pos
+A E S K K G F L P V I D K K D G Y T F L Y P F G G Q E V S I,tox_negnc,toxinpred_neg_sp
+A K C I K N G K G C R E D Q G P P F C C S G F C Y R Q V G W A R G Y C K N R,amp_posc,ampep_pos
+M E R R N H T G,unk,uniprot
+M F W K F D L H,unk,uniprot
+M L Q N S A V L L L L V I S A S A,amp_posc,satpdb_pos
+G L L S G I L G T G K H I V C G L S G L C,amp_posc,satpdb_pos
+A L W K D I L K N A G K A A L N E I N Q L V N Q,amp_posc,ampep_pos
+A A P G A L E V L E T S P D S F E D G S E T,tox_negnc,toxinpred_neg_sp
+P F P,amp_posc,satpdb_pos
+M D I D P Y N G,unk,uniprot
+M F T I I T Y F G L L L A A L A L A V V L F V G L S K I E L I,amp_negnc,ampep_neg
+A G V E A I I R I L Q Q L L F,amp_posc,satpdb_pos
+M G K P T F Q P N N R K R K K N H G F R A R M A T K N G R K V L A R R R Q K G R K V L S A,amp_negnc,ampep_neg
+A A T K M I A K I V N R R I I V R D M N R F H H F E D G S,tox_negnc,toxinpred_neg_tr
+A A E G P S I N G,tox_negnc,toxinpred_neg_tr
+Q R E A R P G C L,unk,uniprot
+A L W K D I L K N A G K A A L N E I N Q I V Q,amp_posc,ampep_pos
+M P R N P N S F R,unk,uniprot
+K F P K F R R G I P F L F V,amp_posc,satpdb_pos
+A A V E V S S T N G,tox_negnc,toxinpred_neg_tr
+A F E I I N D I K,tox_negnc,toxinpred_neg_sp
+A G R G K Q G G K V R A K A K T R S S R A G L Q F P V G R V H R L L R K G N Y,amp_posc,ampep_pos
+M S K G K K R S G A R P G R P Q P L R G T K G K R K G A R L W Y V G G Q Q F,amp_negnc,ampep_neg
+A A I E A S S T N G,tox_negnc,toxinpred_neg_tr
+A E V P M P L R Q L T M T L P D G R E E S V M E R T T L V A,tox_negnc,toxinpred_neg_sp
+F V N E D G V D,unk,uniprot
+A D G S D P A S S E F L A E G G G V R,tox_negnc,toxinpred_neg_sp
+A A L E A P R I L N L N N N P Y F K G T Y,tox_negnc,toxinpred_neg_tr
+A L K A V P A V M G M I K K E,amp_posc,ampep_pos
+A A T A A T P A T A A T P A R A,tox_negnc,toxinpred_neg_sp
+M Q L F H L C L,unk,uniprot
+M D A A H L S D L D I D A L E I S E F L D E S R L E D S E V V A K V M S A S C T T C E C C C S C S S,unk,uniprot
+M D I I I I V G G,amp_posc,satpdb_pos
+P G,amp_posc,satpdb_pos
+E C T R S G G A C N S H T Q C C D H F C S T A T S T C I,amp_posc,satpdb_pos
+A L L D K L K S L G K V V G K V A I G V A Q H Y L N P Q Q,amp_posc,ampep_pos
+A I S Y G N G V Y C N K E K C W V N K A E N K Q A I T G I V I G G W A S S L A G M G H,amp_posc,ampep_pos
+M A A R L Y C Q,unk,uniprot
+A A A A G F E K G I D R D F E P V L F M T P L N,tox_negnc,toxinpred_neg_tr
+A A I E A P S L N G,tox_negnc,toxinpred_neg_tr
+A D E T C T D L T I L T T Q Y I A G D F D,tox_negnc,toxinpred_neg_sp
+G G L F Y V K H K E Q Q R K R F,amp_posc,satpdb_pos
+A E E Q S F S S T K F S T D Q P N L I L Q G D A,tox_negnc,toxinpred_neg_sp
+D Q G L F K V L,unk,uniprot
+S H R E L E K T P,unk,uniprot
+L V V W G R N G L,unk,uniprot
+A D D K N P L E E A F R E A D Y E V F L E I A K N G L,amp_posc,ampep_pos
+E V V R N P Q S C R W N M G V C I P I S C P G N M R Q I G T C F G P R V P C C R,amp_posc,satpdb_pos
+A C H A H C Q S V G R R G G Y C G N F R M T C Y C Y,amp_posc,ampep_pos
+K K K K V V A P T Y V F V,amp_posc,satpdb_pos
+G A K T E T L V I P E T E L E A C,amp_posc,satpdb_pos
+A A N I D Y C C R T A K T I Y G I L G I K I W I F Q P F,tox_negnc,toxinpred_neg_tr
+A D D P V Y D A E G N,tox_negnc,toxinpred_neg_tr
+A L L L A I R K R,amp_posc,ampep_pos
+A K K V F K R L E K L F S K I Q N D K,amp_posc,ampep_pos
+A D E G F S A T V R N G A V,tox_negnc,toxinpred_neg_sp
+S P H T Y V I Y,unk,uniprot
+A A I E A P S T N G,tox_negnc,toxinpred_neg_tr
+A L P K K L K Y L N L F N D G F N Y M G V V,amp_posc,ampep_pos
+S T Q M L S P P E R P R E F R H P N E L R Q Y L K E L N E Y Y A I M G R T R F,unk,uniprot
+A P L E P V Y P G D N A T P E Q M A Q Y A A E L R R Y I N M L T R P R Y,amp_negnc,ampep_neg
+A L W K N M L K G I G K L A G Q A A L G A V K T L V G A E,amp_posc,ampep_pos
+A A L K A L S L G K S L S T G N S K S F F V R Q T Q T K,tox_negnc,toxinpred_neg_tr
+K Q N A A N I L R L K E S I A A T N E A V H E V,amp_posc,satpdb_pos
+A P T A F Y G V R,amp_negnc,ampep_neg
+A A G Q D F M R F,tox_negnc,toxinpred_neg_sp

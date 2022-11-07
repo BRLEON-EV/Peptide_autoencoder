@@ -1,0 +1,12 @@
+PyHamcrest
+Automat==0.3.0
+torchtext==0.3.1
+tensorboard_logger
+modlamp==4.2.3
+faiss-gpu
+pandas
+h5py
+matplotlib
+seaborn
+scikit-learn
+biopython

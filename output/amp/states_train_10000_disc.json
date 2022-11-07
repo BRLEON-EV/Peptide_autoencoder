@@ -1,0 +1,14 @@
+{
+  "amp_lab_train": 1.0,
+  "amp_lab_val": 0.8999345970971773,
+  "amp_lab_test": 0.7883026232125546,
+  "amp_between_train": 0.7883026232125546,
+  "amp_between_val": 0.7883026232125546,
+  "amp_between_test": 0.7883026232125546,
+  "tox_lab_train": 1.0,
+  "tox_lab_val": 0.9595694988671554,
+  "tox_lab_test": 0.8567362552524584,
+  "tox_between_train": 0.8567362552524584,
+  "tox_between_val": 0.8567362552524584,
+  "tox_between_test": 0.8567362552524584
+}
